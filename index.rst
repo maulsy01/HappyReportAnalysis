@@ -6,9 +6,6 @@
 Welcome to Happy Report Analysis's documentation!
 =================================================
 
-By Sydney Maule and Sam Woollums
-================================
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
