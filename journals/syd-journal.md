@@ -24,4 +24,10 @@ to this happiness? How has happiness changed over time? We then brainstormed ide
 
 #### November 13, 2018
 
-While Sam worked on setting up the github website, I worked on cleaning and combining the data sets for the three years of data into one. 
+While Sam worked on setting up the github website, I worked on cleaning and combining the data sets for the three years of data into one.
+I had to change the column names in the 2017 data set so they are the same as the other two data sets. After I changed the column names, I 
+added a column to each data set with the year so we will know the year after the data sets are combined. I then wanted to create a column in the 2017 data for region using the region information in the other data sets.
+
+#### November 14, 2018
+
+
