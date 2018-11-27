@@ -67,4 +67,8 @@ We created a plan for what to do over break and what we need to do before we giv
 
 #### November 21, 2018
 
-I finished typing my journal into GitHub. I then made more comments into my python notebook describing the code and the visualizations I created.
+Today I finished typing my journal into GitHub. I then made more comments into my python notebook describing the code and the visualizations I created.
+
+#### November 27, 2018
+
+Today during class, Sam and I planned out the order of our narrative and visualizations. We changed the theme and formating of our website to what we want. We created an image folder on github to put all of our visualizations so we can easily link to them for our website. We now have a plan to easily add our information to the website. 
