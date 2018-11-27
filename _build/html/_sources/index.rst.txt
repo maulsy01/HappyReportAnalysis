@@ -27,3 +27,4 @@ General Information
 
 We first wanted to know more general information about the data, such as what countries are the happiest and how have the countries changed over the years.
 
+.. figure:: images/areaplot.png
