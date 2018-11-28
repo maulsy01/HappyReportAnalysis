@@ -72,3 +72,7 @@ Today I finished typing my journal into GitHub. I then made more comments into m
 #### November 27, 2018
 
 Today during class, Sam and I planned out the order of our narrative and visualizations. We changed the theme and formating of our website to what we want. We created an image folder on github to put all of our visualizations so we can easily link to them for our website. We now have a plan to easily add our information to the website. 
+
+#### November 28, 2018
+
+I worked on organizing the website into the categories of our analysis. I then included the plots I had created in each category of our analysis. I also included descriptions and what we learned from each plot. The one plot I had an issue with importing is the world map displaying happiness score. I am unsure how to save the map in a way it can be interactive on the website.
