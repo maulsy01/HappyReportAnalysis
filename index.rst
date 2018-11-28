@@ -22,9 +22,45 @@ Indices and tables
 
 The following data is from the Happiness Report data from 2015, 2016, and 2017. The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.
 
+Cleaning the Data
+-----------------
+We obtained the Happiness Report data from 2015, 2016, and 2017. We wanted to combine the three datasets into one dataset. The columns in the 2017 data had to be changed in order to match the other two datasets. We also added a year column to each dataset so when we combined them we could be able to tell which year the data is from. We also needed to add a region column to the 2017 data using the other datasets because there was not a region column. 
+
+Here is the code we used to create the region column:
+
+.. code-block:: python
+
+   h = happy15[['Country','Region']]
+   countries = dict(h.values)
+   happy17['Region'] = 'Region'
+   for c in happy17.index:
+       if happy17.at[c, 'Country'] in countries:
+           happy17.at[c, 'Region'] = countries[happy17.at[c, 'Country']]
+       else:
+           happy17.at[c, 'Region'] = 'Unknown'
+
+Now that all of the datasets had the same organization, we concatinated them into one dataframe using this code:
+
+.. code-block:: python
+
+   frames = [happy15, happy16, happy17]
+   happy = pd.concat(frames)
+   happy = happy.set_index(['Country'])
+   happy = happy.reset_index()
+
 General Information
 -------------------
 
 We first wanted to know more general information about the data, such as what countries are the happiest and how have the countries changed over the years.
 
+
+Categorical Exploration
+-----------------------
+
+Our next question in our analysis was which areas of happiness are most important in forming the happiness score.
+
+The following plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.
+
 .. figure:: images/areaplot.png
+
+
