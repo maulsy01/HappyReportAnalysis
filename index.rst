@@ -55,7 +55,7 @@ We first wanted to know more general information about the data, such as what co
 
 The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.
 
-
+.. figure:: images/regionbar.png
 
 
 Categorical Exploration
