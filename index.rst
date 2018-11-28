@@ -63,4 +63,13 @@ The following plot shows the happiness score for the happiest country in 2015, 2
 
 .. figure:: images/areaplot.png
 
+The following area plot shows the top 50 happiest countries in 2017 with their category distributions. There is relatively a pattern of what is typically the most important in creating the score, but there some variations.
+
+.. figure:: images/areaplot2.png
+
+Correlations
+-------------
+
+We then wanted to look for correlations between the different categories of the happiness score.
+
 
