@@ -53,6 +53,10 @@ General Information
 
 We first wanted to know more general information about the data, such as what countries are the happiest and how have the countries changed over the years.
 
+The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.
+
+
+
 
 Categorical Exploration
 -----------------------
@@ -72,4 +76,17 @@ Correlations
 
 We then wanted to look for correlations between the different categories of the happiness score.
 
+The following is a scatter plot showing Economy vs Health with size relating to the rank and color relating to the score. The larger the circle the worse the rank, and the lighter the circle the higher the score. This scatter plot shows a very high correlation between economy and health.
 
+.. figure:: images/healthvseconomy.png
+
+The following is a scatter plot showing Family vs Freedom with size relating to the rank and color relating to the score. This plot shows there is not as high of a correlation between Freedom and Family compared to Economy and Health.
+
+.. figure:: images/freedomvsfamily.png
+
+The following plot shows the correlation between the different categories, total score, and rank. There is a high positive correlation between happiness score and almost every category, and there is a high negative correlation between happiness rank and almost every category, which is to be expected. Some other somewhat high correlations are economy and health, family and economy, and family and health.
+
+.. figure:: images/correlation.png
+
+Overall
+---------
