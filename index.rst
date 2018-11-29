@@ -106,3 +106,8 @@ The following plot shows the correlation between the different categories, total
 
 Overall
 ---------
+The following map shows the happiness score for countries on a map. I used code found on kaggle relating to this data set to assist in creating this map. The darker the country, the higher the happiness score. The map makes it easier to see that the happiest countries are in North America, Europe, and Australia/New Zealand, and the least happy countries are found in Africa and Southern Asia.
+
+In order to interact with this graph, go to our jupiter notebooks linked above.
+
+.. figure:: images/map.png
