@@ -20,7 +20,9 @@ Indices and tables
 * :ref:`search`
 
 
-The following data is from the Happiness Report data from 2015, 2016, and 2017. The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.
+The following data is from the Happiness Report data from 2015, 2016, and 2017. Each of the datasets contain the country, their happiness score, and their happiness rate. Also, it shows the scores of each of the different categories that make up the happiness score. These scores for the categories added together make up the happiness score. These categories are: Distopia Residual, Economy (GDP per Capita), Family, Freedom, Generosity, Health (Life Expectancy), and Trust (Government Corruption). 
+
+The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.
 
 Cleaning the Data
 -----------------
@@ -105,3 +107,8 @@ The following plot shows the correlation between the different categories, total
 
 Overall
 ---------
+The following map shows the happiness score for countries on a map. I used code found on kaggle relating to this data set to assist in creating this map. The darker the country, the higher the happiness score. The map makes it easier to see that the happiest countries are in North America, Europe, and Australia/New Zealand, and the least happy countries are found in Africa and Southern Asia.
+
+In order to interact with this graph, go to our jupiter notebooks linked above.
+
+.. figure:: images/map.png
