@@ -48,12 +48,78 @@
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 <p>The following data is from the Happiness Report data from 2015, 2016, and 2017. The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.</p>
+<div class="section" id="cleaning-the-data">
+<h2>Cleaning the Data<a class="headerlink" href="#cleaning-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We obtained the Happiness Report data from 2015, 2016, and 2017. We wanted to combine the three datasets into one dataset. The columns in the 2017 data had to be changed in order to match the other two datasets. We also added a year column to each dataset so when we combined them we could be able to tell which year the data is from. We also needed to add a region column to the 2017 data using the other datasets because there was not a region column.</p>
+<p>Here is the code we used to create the region column:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">happy15</span><span class="p">[[</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span><span class="s1">&#39;Region&#39;</span><span class="p">]]</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">happy17</span><span class="p">[</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Region&#39;</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">happy17</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">happy17</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;Country&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
+        <span class="n">happy17</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;Region&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">countries</span><span class="p">[</span><span class="n">happy17</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;Country&#39;</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">happy17</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;Region&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Unknown&#39;</span>
+</pre></div>
+</div>
+<p>Now that all of the datasets had the same organization, we concatinated them into one dataframe using this code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">happy15</span><span class="p">,</span> <span class="n">happy16</span><span class="p">,</span> <span class="n">happy17</span><span class="p">]</span>
+<span class="n">happy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+<span class="n">happy</span> <span class="o">=</span> <span class="n">happy</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Country&#39;</span><span class="p">])</span>
+<span class="n">happy</span> <span class="o">=</span> <span class="n">happy</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="general-information">
 <h2>General Information<a class="headerlink" href="#general-information" title="Permalink to this headline">¶</a></h2>
 <p>We first wanted to know more general information about the data, such as what countries are the happiest and how have the countries changed over the years.</p>
+<p>The following plot shows the average happiness score in the world over 3 years.</p>
+<div class="figure">
+<img alt="_images/happinessLine.png" src="_images/happinessLine.png" />
+</div>
+<p>The following bar plot shows the number of country appearances in the top 5 happiest countries over 2015-2017.</p>
+<div class="figure">
+<img alt="_images/top5.png" src="_images/top5.png" />
+</div>
+<p>The following bar plot shows the highest and lowest growth of percent change over 2015-2017 for each country.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/percentChangeBar.png"><img alt="_images/percentChangeBar.png" src="_images/percentChangeBar.png" style="width: 800pt;" /></a>
+</div>
+<p>The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.</p>
+<div class="figure">
+<img alt="_images/regionbar.png" src="_images/regionbar.png" />
+</div>
+</div>
+<div class="section" id="categorical-exploration">
+<h2>Categorical Exploration<a class="headerlink" href="#categorical-exploration" title="Permalink to this headline">¶</a></h2>
+<p>Our next question in our analysis was which areas of happiness are most important in forming the happiness score.</p>
+<p>The following line plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.</p>
 <div class="figure">
 <img alt="_images/areaplot.png" src="_images/areaplot.png" />
 </div>
+<p>The following area plot shows the top 50 happiest countries in 2017 with their category distributions. There is relatively a pattern of what is typically the most important in creating the score, but there some variations.</p>
+<div class="figure">
+<img alt="_images/areaplot2.png" src="_images/areaplot2.png" />
+</div>
+</div>
+<div class="section" id="correlations">
+<h2>Correlations<a class="headerlink" href="#correlations" title="Permalink to this headline">¶</a></h2>
+<p>We then wanted to look for correlations between the different categories of the happiness score.</p>
+<p>The following is a scatter plot showing Economy vs Health with size relating to the rank and color relating to the score. The larger the circle the worse the rank, and the lighter the circle the higher the score. This scatter plot shows a very high correlation between economy and health.</p>
+<div class="figure">
+<img alt="_images/healthvseconomy.png" src="_images/healthvseconomy.png" />
+</div>
+<p>The following is a scatter plot showing Family vs Freedom with size relating to the rank and color relating to the score. This plot shows there is not as high of a correlation between Freedom and Family compared to Economy and Health.</p>
+<div class="figure">
+<img alt="_images/freedomvsfamily.png" src="_images/freedomvsfamily.png" />
+</div>
+<p>The following plot shows the correlation between the different categories, total score, and rank. There is a high positive correlation between happiness score and almost every category, and there is a high negative correlation between happiness rank and almost every category, which is to be expected. Some other somewhat high correlations are economy and health, family and economy, and family and health.</p>
+<div class="figure">
+<img alt="_images/correlation.png" src="_images/correlation.png" />
+</div>
+</div>
+<div class="section" id="overall">
+<h2>Overall<a class="headerlink" href="#overall" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

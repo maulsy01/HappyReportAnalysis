@@ -53,9 +53,23 @@ General Information
 
 We first wanted to know more general information about the data, such as what countries are the happiest and how have the countries changed over the years.
 
+The following plot shows the average happiness score in the world over 3 years. 
+
+.. figure:: images/happinessLine.png
+
+The following bar plot shows the number of country appearances in the top 5 happiest countries over 2015-2017.
+
+.. figure:: images/top5.png
+
+The following bar plot shows the highest and lowest growth of percent change over 2015-2017 for each country.
+
+.. figure:: images/percentChangeBar.png
+        :width: 800pt
+
 The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.
 
 .. figure:: images/regionbar.png
+
 
 
 Categorical Exploration
@@ -63,7 +77,7 @@ Categorical Exploration
 
 Our next question in our analysis was which areas of happiness are most important in forming the happiness score.
 
-The following plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.
+The following line plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.
 
 .. figure:: images/areaplot.png
 
