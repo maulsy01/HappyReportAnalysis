@@ -102,5 +102,9 @@ The following plot shows the correlation between the different categories, total
 
 .. figure:: images/correlation.png
 
+
+.. plot:: pyplots/interactive1.py
+   :include-source:
+
 Overall
 ---------
