@@ -53,4 +53,5 @@ Today, I worked on finishing writing out all of my journals and catching up on w
 ### 11/26/2018
 I worked on creating the multi bar graphs that shows the mean of each category for every year. This did not take me as long, as I created a similar plot previously. Then, I decided to work upon creating interactive graphs. I used the example from class to help figure out what I can do. From there, I created two different interactive graphs from previous plots I created. It took me some time to convert it, but I finally got it. From here I finished writing my comments on my code for my plots and commenting on what my plots show. 
 
-
+### 11/27/2018
+During class, Sydney and I planned out the order of our narrative and visualizations. After some work and some fails, we finally got the theme and website format all planned out. We created an image folder on github to put all of our visualizations so we can easily link to them for our website. We now have to start to add our information into the website! This is where our day ended.
