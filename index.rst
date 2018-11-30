@@ -70,7 +70,11 @@ The following bar plot shows the highest and lowest growth of percent change ove
 .. figure:: images/percentChangeBar.png
         :width: 800pt
         
+The following bar plot shows each region's percent change over 2015-2017.
+        
 .. figure:: images/regionPctChange.png
+
+The following scatter plot has each point representing each country, labels it depending on the region, and plots it based on its average percent change of happiness score over 3 years.
 
 .. figure:: images/pctchangeScatter.png
 
@@ -80,6 +84,8 @@ Categorical Exploration
 -----------------------
 
 Our next question in our analysis was which areas of happiness are most important in forming the happiness score.
+
+The following line plot shows the average mean score over every year for every category.
 
 .. figure:: images/avgScoreByCategory.png
 
