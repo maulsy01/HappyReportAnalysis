@@ -10,11 +10,17 @@ Happiness Report Analysis
    :maxdepth: 2
    :caption: Contents:
 
+Intro
+--------
 The following data is from the Happiness Report data from 2015, 2016, and 2017. Each of the datasets contain the country, their happiness score, and their happiness rate. Also, it shows the scores of each of the different categories that make up the happiness score. These scores for the categories added together make up the happiness score. These categories are: Distopia Residual, Economy (GDP per Capita), Family, Freedom, Generosity, Health (Life Expectancy), and Trust (Government Corruption). 
 
 `This notebook <notebooks/Happiness\ Report.ipynb>`_ contains code for cleaning the data as well as some of the visualizations.
 
 The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.
+
+Data Acquisition
+-----------------
+
 
 Cleaning the Data
 -----------------
