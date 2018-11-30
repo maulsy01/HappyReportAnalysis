@@ -13,18 +13,11 @@ Happiness Report Analysis
 
 What does the world happiness look like?
 -----------------------------------------
-The following data is from the Happiness Report data from 2015, 2016, and 2017. Each of the datasets contain the country, their happiness score, and their happiness rate. Also, it shows the scores of each of the different categories that make up the happiness score. These scores for the categories added together make up the happiness score. These categories are: Distopia Residual, Economy (GDP per Capita), Family, Freedom, Generosity, Health (Life Expectancy), and Trust (Government Corruption). 
-
-`This notebook <notebooks/Happiness\ Report.ipynb>`_ contains code for cleaning the data as well as some of the visualizations.
-
-The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.
-
-https://www.kaggle.com/unsdsn/world-happiness#2015.csv
-https://www.kaggle.com/unsdsn/world-happiness#2016.csv
-https://www.kaggle.com/unsdsn/world-happiness#2017.csv
+The main focus of our data analysis is answering "what does the world happines look like?". Is it increasing, decreasing or remaining the same? What regions of the world are happier? Which country is the happiest? What catgories are highest for the happiest countries and/or regions. In general, we want to find the trends of happiness and those specific categories for each country and region over the past three years. Also, with this knowledge in mind, it may help us describe our future or explain how events in the world may affect happiness score. 
 
 Data Acquisition
 -----------------
+The following data is from the Happiness Report data from `2015 <https://www.kaggle.com/unsdsn/world-happiness#2015.csv>`_, `2016 <https://www.kaggle.com/unsdsn/world-happiness#2016.csv>`_, and `2017 <https://www.kaggle.com/unsdsn/world-happiness#2017.csv>`_. Each of the datasets contain the country, their happiness score, and their happiness rate. Also, it shows the scores of each of the different categories that make up the happiness score. These scores for the categories added together make up the happiness score. These categories are: Distopia Residual, Economy (GDP per Capita), Family, Freedom, Generosity, Health (Life Expectancy), and Trust (Government Corruption). 
 
 
 Cleaning the Data
@@ -94,7 +87,11 @@ The following line plot shows the average mean score over every year for every c
 
 .. figure:: images/avgScoreByCategory.png
 
+The following line plot takes the average score for each happiness rank over the past three years and plots them starting with rank 1 on the left. 
+
 .. figure:: images/avgScoreByCategoryRank.png
+
+The following bar plot is seperated by each year, and for each year, there is a bar to represent the average score for one of the six categories. 
 
 .. figure:: images/avgScoreByCategoryBar.png
 
@@ -107,6 +104,8 @@ The following line plot shows the happiness score for the happiest country in 20
 The following area plot shows the top 50 happiest countries in 2017 with their category distributions. There is relatively a pattern of what is typically the most important in creating the score, but there some variations.
 
 .. figure:: images/areaplot2.png
+
+The following bar plot is seperated by each region, and for each region, there is a bar to represent the average score for one of the six categories. 
 
 .. figure:: images/regionCategoryBar.png
 
