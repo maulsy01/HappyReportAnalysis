@@ -17,7 +17,6 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-
 The following data is from the Happiness Report data from 2015, 2016, and 2017. Each of the datasets contain the country, their happiness score, and their happiness rate. Also, it shows the scores of each of the different categories that make up the happiness score. These scores for the categories added together make up the happiness score. These categories are: Distopia Residual, Economy (GDP per Capita), Family, Freedom, Generosity, Health (Life Expectancy), and Trust (Government Corruption). 
 
 The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.
