@@ -118,6 +118,9 @@ The following is a scatter plot showing Family vs Freedom with size relating to 
 
 .. figure:: images/freedomvsfamily.png
 
+
+The following plot shows the correlation between family score and trust score. This plot shows a small correlation between a negative relationship between family and trust.
+
 .. figure:: images/trustVsFamily.png
 
 The following plot shows the correlation between the different categories, total score, and rank. There is a high positive correlation between happiness score and almost every category, and there is a high negative correlation between happiness rank and almost every category, which is to be expected. Some other somewhat high correlations are economy and health, family and economy, and family and health.
