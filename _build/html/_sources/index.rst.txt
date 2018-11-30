@@ -10,8 +10,6 @@ Happiness Report Analysis
    :maxdepth: 2
    :caption: Contents:
 
-
-
 Indices and tables
 ==================
 
