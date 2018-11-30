@@ -10,14 +10,9 @@ Happiness Report Analysis
    :maxdepth: 2
    :caption: Contents:
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
 The following data is from the Happiness Report data from 2015, 2016, and 2017. Each of the datasets contain the country, their happiness score, and their happiness rate. Also, it shows the scores of each of the different categories that make up the happiness score. These scores for the categories added together make up the happiness score. These categories are: Distopia Residual, Economy (GDP per Capita), Family, Freedom, Generosity, Health (Life Expectancy), and Trust (Government Corruption). 
+
+`This notebook <notebooks/Happiness\ Report.ipynb>`_ contains code for cleaning the data as well as some of the visualizations.
 
 The questions we would like to answer are what countries and regions are the happiest, and what factors make countires happy.
 
@@ -60,14 +55,18 @@ The following bar plot shows the number of country appearances in the top 5 happ
 
 .. figure:: images/top5.png
 
+The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.
+
+.. figure:: images/regionbar.png
+
 The following bar plot shows the highest and lowest growth of percent change over 2015-2017 for each country.
 
 .. figure:: images/percentChangeBar.png
         :width: 800pt
+        
+.. figure:: images/regionPctChange.png
 
-The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.
-
-.. figure:: images/regionbar.png
+.. figure:: images/pctchangeScatter.png
 
 
 
@@ -76,6 +75,14 @@ Categorical Exploration
 
 Our next question in our analysis was which areas of happiness are most important in forming the happiness score.
 
+.. figure:: images/avgScoreByCategory.png
+
+.. figure:: images/avgScoreByCategoryRank.png
+
+.. figure:: images/avgScoreByCategoryBar.png
+
+
+
 The following line plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.
 
 .. figure:: images/areaplot.png
@@ -83,6 +90,8 @@ The following line plot shows the happiness score for the happiest country in 20
 The following area plot shows the top 50 happiest countries in 2017 with their category distributions. There is relatively a pattern of what is typically the most important in creating the score, but there some variations.
 
 .. figure:: images/areaplot2.png
+
+.. figure:: images/regionCategoryBar.png
 
 Correlations
 -------------
@@ -97,6 +106,8 @@ The following is a scatter plot showing Family vs Freedom with size relating to 
 
 .. figure:: images/freedomvsfamily.png
 
+.. figure:: images/trustVsFamily.png
+
 The following plot shows the correlation between the different categories, total score, and rank. There is a high positive correlation between happiness score and almost every category, and there is a high negative correlation between happiness rank and almost every category, which is to be expected. Some other somewhat high correlations are economy and health, family and economy, and family and health.
 
 .. figure:: images/correlation.png
@@ -109,3 +120,10 @@ The following map shows the happiness score for countries on a map. I used code 
 In order to interact with this graph, go to our jupiter notebooks linked above.
 
 .. figure:: images/map.png
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
