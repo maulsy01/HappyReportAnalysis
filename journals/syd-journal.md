@@ -76,3 +76,7 @@ Today during class, Sam and I planned out the order of our narrative and visuali
 #### November 28, 2018
 
 I worked on organizing the website into the categories of our analysis. I then included the plots I had created in each category of our analysis. I also included descriptions and what we learned from each plot. The one plot I had an issue with importing is the world map displaying happiness score. I am unsure how to save the map in a way it can be interactive on the website.
+
+#### November 29th, 2018
+
+I added more information on what data we obtained and what information is contained in the datasets to the website. I also worked on adding more graphs and explinations of the graphs onto the website. We had some issues linking our Jupyter Notebooks to the website.
