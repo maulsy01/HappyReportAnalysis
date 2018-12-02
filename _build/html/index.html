@@ -39,6 +39,9 @@
 <h1>Happiness Report Analysis<a class="headerlink" href="#happiness-report-analysis" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="notebooks">
+<h2>Notebooks<a class="headerlink" href="#notebooks" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="what-does-the-world-happiness-look-like">
 <h2>What does the world happiness look like?<a class="headerlink" href="#what-does-the-world-happiness-look-like" title="Permalink to this headline">¶</a></h2>
 <p>The main focus of our data analysis is answering “what does the world happines look like?”. Is it increasing, decreasing or remaining the same? What regions of the world are happier? Which country is the happiest? What catgories are highest for the happiest countries and/or regions? In general, we want to find the trends of happiness and those specific categories for each country and region over the past three years. Also, with this knowledge in mind, it may help us describe our future or explain how events in the world may affect happiness score.</p>
@@ -74,114 +77,209 @@
 <p>We first wanted to know more general information about the data, such as what countries are the happiest and how have the countries changed over the years.</p>
 <p>We started by generally looking at the difference in happiness score over the time period of 2015-2017.</p>
 <p>The following plot shows the average happiness score in the world over 3 years. As one can see from the graph, the happiness score from 2015 to 2016 increases by around 0.010. However, from 2016-2017, the happiness score drops. Although the drop seems very signigicant on the line plot, it only drops around a happiness score of 0.030. Also, this is solely a drop of around 0.020 from 2015 to 2017. It is quite interesting, however, to note that happiness over the world is not just a continous increase.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/happinessLine.png" src="_images/happinessLine.png" />
+<a class="reference internal image-reference" href="_images/happinessLine.png"><img alt="_images/happinessLine.png" src="_images/happinessLine.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>Next, we wanted to see the top countries for happiness over three years, and whether or not they vary significantly.</p>
 <p>The following bar plot shows the number of country appearances in the top 5 happiest countries over 2015-2017. The plot shows that only 6 countries in the world reach the top 5 happiest over three years. Therefore, the happiest countries remain relatively stable over the years. Four out of the six countries have been in the top 5 happiest countries every year. The only exceptions include Canada, with only 1 appearance, and Finland, with two appearances.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/top5.png" src="_images/top5.png" />
+<a class="reference internal image-reference" href="_images/top5.png"><img alt="_images/top5.png" src="_images/top5.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/regionbar.png" src="_images/regionbar.png" />
+<a class="reference internal image-reference" href="_images/regionbar.png"><img alt="_images/regionbar.png" src="_images/regionbar.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>We, then, wondered whether the percent change of happiness score over the three years would have any specific trend for regions, countries, or with one of the 6 categories. So, we created a new data frame with percent change as a column.</p>
 <p>The code to create the dataframe with percent change is shown below:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">happy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://knuth.luther.edu/~maulsy01/happy.csv&quot;</span><span class="p">)</span>
 <span class="n">happy</span> <span class="o">=</span> <span class="n">happy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">])</span>
-<span class="c1"># Create a dataframe that is just 2015 and 2017. Then split those into two seperate series, then merge them back together.</span>
+<span class="c1"># Create a dataframe that is just 2015 and 2017. Then split those into two seperate series,</span>
+<span class="c1"># then merge them back together.</span>
 <span class="n">over_years</span> <span class="o">=</span> <span class="n">happy</span><span class="p">[</span><span class="n">happy</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2016</span><span class="p">]</span>
 <span class="n">over_years</span> <span class="o">=</span> <span class="n">happy</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Region&quot;</span><span class="p">,</span> <span class="s2">&quot;Happiness Score&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">]]</span>
 <span class="n">series_2015</span> <span class="o">=</span> <span class="n">over_years</span><span class="p">[</span><span class="n">over_years</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2015</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
 <span class="n">series_2017</span> <span class="o">=</span> <span class="n">over_years</span><span class="p">[</span><span class="n">over_years</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2017</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
 <span class="n">country_change</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">series_2015</span><span class="p">,</span> <span class="n">series_2017</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
-<span class="c1"># Use the country_change dataframe, subtract happines score y and x, then divide it all by x and times it by 100. This gives</span>
+<span class="c1"># Use the country_change dataframe, subtract happines score y and x,</span>
+<span class="c1"># then divide it all by x and times it by 100. This gives</span>
 <span class="c1"># the percent change for each country over the three years.</span>
-<span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Percent Change&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Happiness Score_y&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Happiness Score_x&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Happiness Score_x&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="n">country_change</span> <span class="o">=</span> <span class="n">country_change</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Region_y&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Percent Change&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Percent Change&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Happiness Score_y&quot;</span><span class="p">]</span> \
+<span class="o">-</span> <span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Happiness Score_x&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">country_change</span><span class="p">[</span><span class="s2">&quot;Happiness Score_x&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">country_change</span> <span class="o">=</span> <span class="n">country_change</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Region_y&quot;</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Percent Change&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>With the new percent change dataframe, we wanted to see which countries had the top growth in happiness score, and which countries had the least growth in happiness score.</p>
 <p>The following bar plot shows the highest and lowest growth of percent change over 2015-2017 for each country. The plot shows that Togo had the highest growth in happiness over the three years, followed by Senegal, Syria, Latvia, etc. The country with least growth is Central African Republic, followed by Venezuela, Liberia, Lesotho, etc. One intriguing find was that there were a couple countries from Africa on both the top growth and least growth. Also, a couple Latin America countries are in the least growth trend.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<a class="reference internal image-reference" href="_images/percentChangeBar.png"><img alt="_images/percentChangeBar.png" src="_images/percentChangeBar.png" style="width: 800pt;" /></a>
+<a class="reference internal image-reference" href="_images/percentChangeBar.png"><img alt="_images/percentChangeBar.png" src="_images/percentChangeBar.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>From the plot above’s interesting finds of countries from specific regions, we decided to look further into that trend. So, we decided to plot the average percent score for each region in the world.</p>
 <p>The following bar plot shows each region’s percent change over 2015-2017. Australia and New Zealand, Eastern Asia, and Western Europe all seem to have increased slightly, but by not that much. Latin America and Caribbean drastically decreased compared to the other countries, while Southeastern Asia had the largest growth in happiness over the 3 years.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/regionPctChange.png" src="_images/regionPctChange.png" />
+<a class="reference internal image-reference" href="_images/regionPctChange.png"><img alt="_images/regionPctChange.png" src="_images/regionPctChange.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>It only seemed logical to further look at percent change for each region with a scatter plot.</p>
 <p>The following scatter plot has each point representing each country, labels it depending on the region, and plots it based on its average percent change of happiness score over 3 years. Western Europe seems to be relatively stable when it comes to percent change. However, Sub-Saharan Africa seems to change drastically with some countries with high percent changes, and some countries with the complete opposite change.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/pctchangeScatter.png" src="_images/pctchangeScatter.png" />
+<a class="reference internal image-reference" href="_images/pctchangeScatter.png"><img alt="_images/pctchangeScatter.png" src="_images/pctchangeScatter.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="categorical-exploration">
 <h2>Categorical Exploration<a class="headerlink" href="#categorical-exploration" title="Permalink to this headline">¶</a></h2>
 <p>Our next question in our analysis was which areas of happiness are most important in forming the happiness score.</p>
 <p>The following line plot shows the average mean score over every year for every category. Dystopia Residual went up in 2016 but dropped down in 2017, whereas family went down in 2016 but back up in 2017. Economy has slightly gone up over the years, but other than that the other categories are almost linear.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/avgScoreByCategory.png" src="_images/avgScoreByCategory.png" />
+<a class="reference internal image-reference" href="_images/avgScoreByCategory.png"><img alt="_images/avgScoreByCategory.png" src="_images/avgScoreByCategory.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following line plot takes the average score for each happiness rank over the past three years and plots them starting with rank 1 on the left. There is a lot more variation in the line for some of the ranks than what one would assume over three years. Of course, the general trends moves down as Happiness Rank gets larger.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/avgScoreByCategoryRank.png" src="_images/avgScoreByCategoryRank.png" />
+<a class="reference internal image-reference" href="_images/avgScoreByCategoryRank.png"><img alt="_images/avgScoreByCategoryRank.png" src="_images/avgScoreByCategoryRank.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following bar plot is seperated by each year, and for each year, there is a bar to represent the average score for one of the six categories. Over the years, dystopia residual has moved down, while family has increased. Other than that, the general shape for each years remains similiar.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/avgScoreByCategoryBar.png" src="_images/avgScoreByCategoryBar.png" />
+<a class="reference internal image-reference" href="_images/avgScoreByCategoryBar.png"><img alt="_images/avgScoreByCategoryBar.png" src="_images/avgScoreByCategoryBar.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following line plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/areaplot.png" src="_images/areaplot.png" />
+<a class="reference internal image-reference" href="_images/areaplot.png"><img alt="_images/areaplot.png" src="_images/areaplot.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following area plot shows the top 50 happiest countries in 2017 with their category distributions. There is relatively a pattern of what is typically the most important in creating the score, but there some variations.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/areaplot2.png" src="_images/areaplot2.png" />
+<a class="reference internal image-reference" href="_images/areaplot2.png"><img alt="_images/areaplot2.png" src="_images/areaplot2.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following bar plot is seperated by each region, and for each region, there is a bar to represent the average score for one of the six categories.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/regionCategoryBar.png" src="_images/regionCategoryBar.png" />
+<a class="reference internal image-reference" href="_images/regionCategoryBar.png"><img alt="_images/regionCategoryBar.png" src="_images/regionCategoryBar.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="correlations">
 <h2>Correlations<a class="headerlink" href="#correlations" title="Permalink to this headline">¶</a></h2>
 <p>We then wanted to look for correlations between the different categories of the happiness score.</p>
 <p>The following is a scatter plot showing Economy vs Health with size relating to the rank and color relating to the score. The larger the circle the worse the rank, and the lighter the circle the higher the score. This scatter plot shows a very high correlation between economy and health.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/healthvseconomy.png" src="_images/healthvseconomy.png" />
+<a class="reference internal image-reference" href="_images/healthvseconomy.png"><img alt="_images/healthvseconomy.png" src="_images/healthvseconomy.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following is a scatter plot showing Family vs Freedom with size relating to the rank and color relating to the score. This plot shows there is not as high of a correlation between Freedom and Family compared to Economy and Health.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/freedomvsfamily.png" src="_images/freedomvsfamily.png" />
+<a class="reference internal image-reference" href="_images/freedomvsfamily.png"><img alt="_images/freedomvsfamily.png" src="_images/freedomvsfamily.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following plot shows the correlation between family score and trust score. This plot shows a small correlation between a negative relationship between family and trust.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/trustVsFamily.png" src="_images/trustVsFamily.png" />
+<a class="reference internal image-reference" href="_images/trustVsFamily.png"><img alt="_images/trustVsFamily.png" src="_images/trustVsFamily.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <p>The following plot shows the correlation between the different categories, total score, and rank. There is a high positive correlation between happiness score and almost every category, and there is a high negative correlation between happiness rank and almost every category, which is to be expected. Some other somewhat high correlations are economy and health, family and economy, and family and health.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="_images/correlation.png" src="_images/correlation.png" />
+<a class="reference internal image-reference" href="_images/correlation.png"><img alt="_images/correlation.png" src="_images/correlation.png" style="width: 100%;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="overall">
 <h2>Overall<a class="headerlink" href="#overall" title="Permalink to this headline">¶</a></h2>
 <p>The following map shows the happiness score for countries on a map. I used code found on kaggle relating to this data set to assist in creating this map. The darker the country, the higher the happiness score. The map makes it easier to see that the happiest countries are in North America, Europe, and Australia/New Zealand, and the least happy countries are found in Africa and Southern Asia.</p>
 <p>In order to interact with this graph, go to our jupiter notebooks linked above.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="figure">
-<img alt="images/map.png:width::800pt" src="images/map.png:width::800pt" />
+<a class="reference internal image-reference" href="_images/map.png"><img alt="_images/map.png" src="_images/map.png" style="width: 100%;" /></a>
 </div>
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
 </div>
 
 
