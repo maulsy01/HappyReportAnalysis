@@ -167,7 +167,7 @@ The following map shows the happiness score for countries on a map. I used code 
 In order to interact with this graph, go to our jupiter notebooks linked above.
 
 .. figure:: images/map.png
-
+   :width:: 800pt
 Indices and tables
 ==================
 
