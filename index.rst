@@ -12,7 +12,7 @@ Happiness Report Analysis
 
 Notebooks
 ------------
-`This notebook <notebook/Happiness/ Report.ipynb>`_
+`This notebook <notebook/Happiness\ Report.ipynb>`_
 
 What does the world happiness look like?
 -----------------------------------------
