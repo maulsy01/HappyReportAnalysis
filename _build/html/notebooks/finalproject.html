@@ -1,0 +1,1864 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Happiness Report Analysis &#8212; Happy Report Analysis  documentation</title>
+    <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Happy Report Analysis  documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+</style>
+<div class="section" id="Happiness-Report-Analysis">
+<h1>Happiness Report Analysis<a class="headerlink" href="#Happiness-Report-Analysis" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Read in the happy data and remove the unnecessary index
+happy = pd.read_csv(&quot;http://knuth.luther.edu/~maulsy01/happy.csv&quot;)
+happy = happy.drop(columns=[&quot;Unnamed: 0&quot;])
+happy.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Dystopia Residual</th>
+      <th>Economy (GDP per Capita)</th>
+      <th>Family</th>
+      <th>Freedom</th>
+      <th>Generosity</th>
+      <th>Happiness Rank</th>
+      <th>Happiness Score</th>
+      <th>Health (Life Expectancy)</th>
+      <th>Lower Confidence Interval</th>
+      <th>Region</th>
+      <th>Standard Error</th>
+      <th>Trust (Government Corruption)</th>
+      <th>Upper Confidence Interval</th>
+      <th>Whisker.high</th>
+      <th>Whisker.low</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Switzerland</td>
+      <td>2.51738</td>
+      <td>1.39651</td>
+      <td>1.34951</td>
+      <td>0.66557</td>
+      <td>0.29678</td>
+      <td>1</td>
+      <td>7.587</td>
+      <td>0.94143</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03411</td>
+      <td>0.41978</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Iceland</td>
+      <td>2.70201</td>
+      <td>1.30232</td>
+      <td>1.40223</td>
+      <td>0.62877</td>
+      <td>0.43630</td>
+      <td>2</td>
+      <td>7.561</td>
+      <td>0.94784</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.04884</td>
+      <td>0.14145</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>2.49204</td>
+      <td>1.32548</td>
+      <td>1.36058</td>
+      <td>0.64938</td>
+      <td>0.34139</td>
+      <td>3</td>
+      <td>7.527</td>
+      <td>0.87464</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03328</td>
+      <td>0.48357</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Norway</td>
+      <td>2.46531</td>
+      <td>1.45900</td>
+      <td>1.33095</td>
+      <td>0.66973</td>
+      <td>0.34699</td>
+      <td>4</td>
+      <td>7.522</td>
+      <td>0.88521</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03880</td>
+      <td>0.36503</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Canada</td>
+      <td>2.45176</td>
+      <td>1.32629</td>
+      <td>1.32261</td>
+      <td>0.63297</td>
+      <td>0.45811</td>
+      <td>5</td>
+      <td>7.427</td>
+      <td>0.90563</td>
+      <td>NaN</td>
+      <td>North America</td>
+      <td>0.03553</td>
+      <td>0.32957</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="The-Top-5-Happiest-Countries-Over-3-Years">
+<h2>The Top 5 Happiest Countries Over 3 Years<a class="headerlink" href="#The-Top-5-Happiest-Countries-Over-3-Years" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Find the top 5 counties over the 3 years, then groupby country and count the number of times they are in the top 5 per year
+top_countries = happy[happy[&quot;Happiness Rank&quot;] &lt;= 5]
+top_countries_cnt = top_countries.groupby(&quot;Country&quot;)[&quot;Happiness Rank&quot;].count()
+top_countries_cnt
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[4]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Country
+Canada         1
+Denmark        3
+Finland        2
+Iceland        3
+Norway         3
+Switzerland    3
+Name: Happiness Rank, dtype: int64
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a bar graph of the countries that show up in the top 5 from 2015-2017 and plot their number of appearances
+fig, ax = plt.subplots(figsize=(10,5), linewidth=5, edgecolor=&#39;.5&#39;)
+ax.bar(top_countries_cnt.index.values, top_countries_cnt.values, color=&quot;pink&quot;)
+ax.set_title(&quot;Total Number of Appearance in Top 5 for each Country over 3 Years&quot;)
+ax.set_ylabel(&#39;Number of Appearances in Top 5&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[36]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0,0.5,&#39;Number of Appearances in Top 5&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_5_1.png" src="../_images/notebooks_finalproject_5_1.png" />
+</div>
+</div>
+<p>The figure shows that most of the countries in the top 5 remain there
+for all 3 years except Finland once and Canada twice.</p>
+</div>
+<div class="section" id="Regions-By-Categories">
+<h2>Regions By Categories<a class="headerlink" href="#Regions-By-Categories" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a series for each category group by region and find the mean for that category in each region
+family_by_region = happy.groupby(&#39;Region&#39;)[&#39;Family&#39;].mean()
+freedom_by_region = happy.groupby(&#39;Region&#39;)[&#39;Freedom&#39;].mean()
+dystopia_by_region = happy.groupby(&#39;Region&#39;)[&#39;Dystopia Residual&#39;].mean()
+economy_by_region = happy.groupby(&#39;Region&#39;)[&#39;Economy (GDP per Capita)&#39;].mean()
+health_by_region = happy.groupby(&#39;Region&#39;)[&#39;Health (Life Expectancy)&#39;].mean()
+trust_by_region = happy.groupby(&#39;Region&#39;)[&#39;Trust (Government Corruption)&#39;].mean()
+family_by_region
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[6]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Region
+Australia and New Zealand          1.327446
+Central and Eastern Europe         1.065728
+Eastern Asia                       1.079849
+Latin America and Caribbean        1.092063
+Middle East and Northern Africa    0.904168
+North America                      1.269152
+Southeastern Asia                  0.984215
+Southern Asia                      0.685964
+Sub-Saharan Africa                 0.786879
+Unknown                            1.024953
+Western Europe                     1.244900
+Name: Family, dtype: float64
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a bar graph that uses xticks for regions and plots each category for each regions.
+index = np.arange(11)
+bar_width = 0.10
+fig,ax = plt.subplots(figsize=(35,20))
+regions = family_by_region.index.values
+ax.bar(index, family_by_region, bar_width, label=&#39;Family&#39;)
+ax.bar(index + bar_width, freedom_by_region, bar_width, label=&#39;Freedom&#39;)
+ax.bar(index + bar_width*2, dystopia_by_region, bar_width, label=&#39;Dystopia Residual&#39;)
+ax.bar(index + bar_width*3, economy_by_region, bar_width, label=&#39;Economy&#39;)
+ax.bar(index + bar_width*4, health_by_region, bar_width, label=&#39;Health&#39;)
+ax.bar(index + bar_width*5, trust_by_region, bar_width, label=&#39;Trust&#39;)
+
+ax.set_xlabel(&#39;Region&#39;)
+ax.set_ylabel(&#39;Mean Score&#39;)
+ax.set_title(&#39;Mean Score of Happiness Categories for each Region&#39;)
+ax.set_xticks(index + bar_width*5 / 2)
+ax.set_xticklabels(regions)
+ax.legend()
+
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_9_0.png" src="../_images/notebooks_finalproject_9_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a dataframe that is just 2015 and 2017. Then split those into two seperate series, then merge them back together.
+over_years = happy[happy[&quot;Year&quot;] != 2016]
+over_years = happy[[&quot;Country&quot;, &quot;Region&quot;, &quot;Happiness Score&quot;, &quot;Year&quot;]]
+series_2015 = over_years[over_years[&quot;Year&quot;] == 2015].drop(columns=&quot;Year&quot;)
+series_2017 = over_years[over_years[&quot;Year&quot;] == 2017].drop(columns=&quot;Year&quot;)
+country_change = pd.merge(series_2015, series_2017, on=&#39;Country&#39;, how=&#39;outer&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Use the country_change dataframe, subtract happines score y and x, then divide it all by x and times it by 100. This gives
+# the percent change for each country over the three years.
+country_change[&quot;Percent Change&quot;] = (country_change[&quot;Happiness Score_y&quot;] - country_change[&quot;Happiness Score_x&quot;]) / country_change[&quot;Happiness Score_x&quot;] * 100
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Drop the NaN values, drop the one of the region columns, and sort by percent change
+country_change = country_change.dropna().drop(columns=&quot;Region_y&quot;).sort_values(by=&quot;Percent Change&quot;, ascending=False)
+country_change
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Region_x</th>
+      <th>Happiness Score_x</th>
+      <th>Happiness Score_y</th>
+      <th>Percent Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>157</th>
+      <td>Togo</td>
+      <td>Sub-Saharan Africa</td>
+      <td>2.839</td>
+      <td>3.495</td>
+      <td>23.106724</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>Senegal</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.904</td>
+      <td>4.535</td>
+      <td>16.162906</td>
+    </tr>
+    <tr>
+      <th>155</th>
+      <td>Syria</td>
+      <td>Middle East and Northern Africa</td>
+      <td>3.006</td>
+      <td>3.462</td>
+      <td>15.169657</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>Latvia</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.098</td>
+      <td>5.850</td>
+      <td>14.750881</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>Gabon</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.896</td>
+      <td>4.465</td>
+      <td>14.604727</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>Ivory Coast</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.655</td>
+      <td>4.180</td>
+      <td>14.363880</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>Romania</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.124</td>
+      <td>5.825</td>
+      <td>13.680714</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>Egypt</td>
+      <td>Middle East and Northern Africa</td>
+      <td>4.194</td>
+      <td>4.735</td>
+      <td>12.899383</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>Burkina Faso</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.587</td>
+      <td>4.032</td>
+      <td>12.405912</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>Bulgaria</td>
+      <td>Central and Eastern Europe</td>
+      <td>4.218</td>
+      <td>4.714</td>
+      <td>11.759133</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>Hungary</td>
+      <td>Central and Eastern Europe</td>
+      <td>4.800</td>
+      <td>5.324</td>
+      <td>10.916664</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>Cameroon</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.252</td>
+      <td>4.695</td>
+      <td>10.418631</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>Nepal</td>
+      <td>Southern Asia</td>
+      <td>4.514</td>
+      <td>4.962</td>
+      <td>9.924676</td>
+    </tr>
+    <tr>
+      <th>154</th>
+      <td>Benin</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.340</td>
+      <td>3.657</td>
+      <td>9.491020</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>Cambodia</td>
+      <td>Southeastern Asia</td>
+      <td>3.819</td>
+      <td>4.168</td>
+      <td>9.138524</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>Honduras</td>
+      <td>Latin America and Caribbean</td>
+      <td>4.788</td>
+      <td>5.181</td>
+      <td>8.208025</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>Lebanon</td>
+      <td>Middle East and Northern Africa</td>
+      <td>4.839</td>
+      <td>5.225</td>
+      <td>7.976853</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>Greece</td>
+      <td>Western Europe</td>
+      <td>4.857</td>
+      <td>5.227</td>
+      <td>7.617876</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>Congo (Brazzaville)</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.989</td>
+      <td>4.291</td>
+      <td>7.570817</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>Chad</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.667</td>
+      <td>3.936</td>
+      <td>7.335700</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>Dominican Republic</td>
+      <td>Latin America and Caribbean</td>
+      <td>4.885</td>
+      <td>5.230</td>
+      <td>7.062436</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>Philippines</td>
+      <td>Southeastern Asia</td>
+      <td>5.073</td>
+      <td>5.430</td>
+      <td>7.037253</td>
+    </tr>
+    <tr>
+      <th>152</th>
+      <td>Afghanistan</td>
+      <td>Southern Asia</td>
+      <td>3.575</td>
+      <td>3.794</td>
+      <td>6.125872</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>Myanmar</td>
+      <td>Southeastern Asia</td>
+      <td>4.307</td>
+      <td>4.545</td>
+      <td>5.525890</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>Malaysia</td>
+      <td>Southeastern Asia</td>
+      <td>5.770</td>
+      <td>6.084</td>
+      <td>5.441943</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Guatemala</td>
+      <td>Latin America and Caribbean</td>
+      <td>6.123</td>
+      <td>6.454</td>
+      <td>5.405847</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>Tajikistan</td>
+      <td>Central and Eastern Europe</td>
+      <td>4.786</td>
+      <td>5.041</td>
+      <td>5.328038</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>Serbia</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.123</td>
+      <td>5.395</td>
+      <td>5.309389</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>Turkmenistan</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.548</td>
+      <td>5.822</td>
+      <td>4.938717</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>Mali</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.995</td>
+      <td>4.190</td>
+      <td>4.881103</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Belarus</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.813</td>
+      <td>5.569</td>
+      <td>-4.197492</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>Bhutan</td>
+      <td>Southern Asia</td>
+      <td>5.253</td>
+      <td>5.011</td>
+      <td>-4.606888</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Panama</td>
+      <td>Latin America and Caribbean</td>
+      <td>6.786</td>
+      <td>6.452</td>
+      <td>-4.921896</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Brazil</td>
+      <td>Latin America and Caribbean</td>
+      <td>6.983</td>
+      <td>6.635</td>
+      <td>-4.983528</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>Congo (Kinshasa)</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.517</td>
+      <td>4.280</td>
+      <td>-5.246841</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>Kyrgyzstan</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.286</td>
+      <td>5.004</td>
+      <td>-5.334843</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>Vietnam</td>
+      <td>Southeastern Asia</td>
+      <td>5.360</td>
+      <td>5.074</td>
+      <td>-5.335823</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>4.565</td>
+      <td>4.315</td>
+      <td>-5.476450</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>Kosovo</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.589</td>
+      <td>5.279</td>
+      <td>-5.546613</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>Angola</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.033</td>
+      <td>3.795</td>
+      <td>-5.901312</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>Albania</td>
+      <td>Central and Eastern Europe</td>
+      <td>4.959</td>
+      <td>4.644</td>
+      <td>-6.352086</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Paraguay</td>
+      <td>Latin America and Caribbean</td>
+      <td>5.878</td>
+      <td>5.493</td>
+      <td>-6.549846</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>Jamaica</td>
+      <td>Latin America and Caribbean</td>
+      <td>5.709</td>
+      <td>5.311</td>
+      <td>-6.971451</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>Malawi</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.292</td>
+      <td>3.970</td>
+      <td>-7.502329</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>Croatia</td>
+      <td>Central and Eastern Europe</td>
+      <td>5.759</td>
+      <td>5.293</td>
+      <td>-8.091679</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>Mozambique</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.971</td>
+      <td>4.550</td>
+      <td>-8.469117</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Mexico</td>
+      <td>Latin America and Caribbean</td>
+      <td>7.187</td>
+      <td>6.578</td>
+      <td>-8.473632</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>Sudan</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.550</td>
+      <td>4.139</td>
+      <td>-9.032968</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>Ghana</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.633</td>
+      <td>4.120</td>
+      <td>-11.072742</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>Tanzania</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.781</td>
+      <td>3.349</td>
+      <td>-11.425549</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>Yemen</td>
+      <td>Middle East and Northern Africa</td>
+      <td>4.077</td>
+      <td>3.593</td>
+      <td>-11.871476</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>Zambia</td>
+      <td>Sub-Saharan Africa</td>
+      <td>5.129</td>
+      <td>4.514</td>
+      <td>-11.990643</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>Ukraine</td>
+      <td>Central and Eastern Europe</td>
+      <td>4.681</td>
+      <td>4.096</td>
+      <td>-12.497325</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>Botswana</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.332</td>
+      <td>3.766</td>
+      <td>-13.065558</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>Zimbabwe</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.610</td>
+      <td>3.875</td>
+      <td>-15.943601</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>Haiti</td>
+      <td>Latin America and Caribbean</td>
+      <td>4.518</td>
+      <td>3.603</td>
+      <td>-20.252326</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Lesotho</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.898</td>
+      <td>3.808</td>
+      <td>-22.253979</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>Liberia</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.571</td>
+      <td>3.533</td>
+      <td>-22.708379</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Venezuela</td>
+      <td>Latin America and Caribbean</td>
+      <td>6.810</td>
+      <td>5.250</td>
+      <td>-22.907489</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>Central African Republic</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.678</td>
+      <td>2.693</td>
+      <td>-26.780857</td>
+    </tr>
+  </tbody>
+</table>
+<p>149 rows × 5 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Take the top 10 values and plot each country and their percent change on a bar graph.
+top_growth = country_change.head(10)
+fig, ax = plt.subplots(figsize=(28,7), linewidth=5, edgecolor=&#39;.5&#39;)
+ax.bar(top_growth[&quot;Country&quot;], top_growth[&quot;Percent Change&quot;].values, color=&quot;green&quot;)
+ax.set_title(&quot;Highest Happiness Percent Change by Country&quot;)
+ax.set_ylabel(&#39;Percent Change over 2015-2017&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0,0.5,&#39;Percent Change over 2015-2017&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_13_1.png" src="../_images/notebooks_finalproject_13_1.png" />
+</div>
+</div>
+<p>Togo had a very large increase compared to all the others. The other
+countries all still have a large percent increase of around 14 %.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># I made country_change descending to find the least growth in percent change for countries.
+least_growth = country_change.sort_values(by=&quot;Percent Change&quot;, ascending=True).head(10)
+least_growth
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Region_x</th>
+      <th>Happiness Score_x</th>
+      <th>Happiness Score_y</th>
+      <th>Percent Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>147</th>
+      <td>Central African Republic</td>
+      <td>Sub-Saharan Africa</td>
+      <td>3.678</td>
+      <td>2.693</td>
+      <td>-26.780857</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Venezuela</td>
+      <td>Latin America and Caribbean</td>
+      <td>6.810</td>
+      <td>5.250</td>
+      <td>-22.907489</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>Liberia</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.571</td>
+      <td>3.533</td>
+      <td>-22.708379</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Lesotho</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.898</td>
+      <td>3.808</td>
+      <td>-22.253979</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>Haiti</td>
+      <td>Latin America and Caribbean</td>
+      <td>4.518</td>
+      <td>3.603</td>
+      <td>-20.252326</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>Zimbabwe</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.610</td>
+      <td>3.875</td>
+      <td>-15.943601</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>Botswana</td>
+      <td>Sub-Saharan Africa</td>
+      <td>4.332</td>
+      <td>3.766</td>
+      <td>-13.065558</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>Ukraine</td>
+      <td>Central and Eastern Europe</td>
+      <td>4.681</td>
+      <td>4.096</td>
+      <td>-12.497325</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>Zambia</td>
+      <td>Sub-Saharan Africa</td>
+      <td>5.129</td>
+      <td>4.514</td>
+      <td>-11.990643</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>Yemen</td>
+      <td>Middle East and Northern Africa</td>
+      <td>4.077</td>
+      <td>3.593</td>
+      <td>-11.871476</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># I concantenated the top growth and least growth into one series, and then plotted it all on a bar graph to show the variation.
+top_least_growth = pd.concat([top_growth, least_growth])
+fig, ax = plt.subplots(figsize=(40,6), linewidth=5, edgecolor=&#39;.5&#39;)
+ax.bar(top_least_growth[&quot;Country&quot;], top_least_growth[&quot;Percent Change&quot;].values, color=&quot;blue&quot;, width=0.7)
+ax.set_title(&quot;Highest and Lowest Happiness Percent Change by Country&quot;)
+ax.set_ylabel(&#39;Percent Change over 2015-2017&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[40]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0,0.5,&#39;Percent Change over 2015-2017&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_16_1.png" src="../_images/notebooks_finalproject_16_1.png" />
+</div>
+</div>
+<p>The countries with the least growth over the 3 years seem to be a large
+decrease than the top growth is for an increase. Interestingly, many of
+the countries in both the top growth and least growth are in Africa.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># I created a series grouping by region to find the average percent change in each region
+region_change = country_change.groupby(&quot;Region_x&quot;)[&quot;Percent Change&quot;].mean()
+region_change
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[14]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Region_x
+Australia and New Zealand          0.192150
+Central and Eastern Europe         1.590365
+Eastern Asia                       0.172622
+Latin America and Caribbean       -2.809406
+Middle East and Northern Africa    1.273373
+North America                     -1.632229
+Southeastern Asia                  1.933190
+Southern Asia                      1.362282
+Sub-Saharan Africa                -1.143000
+Western Europe                     0.375471
+Name: Percent Change, dtype: float64
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># I created a bar graph to show the variation of mean percent change in each region.
+fig, ax = plt.subplots(figsize=(40,15), linewidth=5, edgecolor=&#39;.5&#39;)
+ax.bar(region_change.index.values, region_change.values, color=&quot;orange&quot;, width=0.7)
+ax.set_title(&quot;Average Happiness Percent Change per Region&quot;)
+ax.set_ylabel(&#39;Average Happiness Percent Change over 2015-2017&#39;)
+ax.set_xlabel(&quot;Regions&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0.5,0,&#39;Regions&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_19_1.png" src="../_images/notebooks_finalproject_19_1.png" />
+</div>
+</div>
+<p>Australia and New Zealand, Eastern Asia, and Western Europe all seem to
+have increased slightly, but by not that much. Latin America and
+Caribbean drastically decreased compared to the other countries, while
+Southeastern Asia had the largest growth in happiness over the 3 years.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Show Regions
+regions
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>array([&#39;Australia and New Zealand&#39;, &#39;Central and Eastern Europe&#39;,
+       &#39;Eastern Asia&#39;, &#39;Latin America and Caribbean&#39;,
+       &#39;Middle East and Northern Africa&#39;, &#39;North America&#39;,
+       &#39;Southeastern Asia&#39;, &#39;Southern Asia&#39;, &#39;Sub-Saharan Africa&#39;,
+       &#39;Unknown&#39;, &#39;Western Europe&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a series for each region in country change, and make the values the percent change
+region1 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Australia and New Zealand&quot;][&quot;Percent Change&quot;])
+region2 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Central and Eastern Europe&quot;][&quot;Percent Change&quot;])
+region3 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Eastern Asia&quot;][&quot;Percent Change&quot;])
+region4 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Latin America and Caribbean&quot;][&quot;Percent Change&quot;])
+region5 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Middle East and Northern Africa&quot;][&quot;Percent Change&quot;])
+region6 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;North America&quot;][&quot;Percent Change&quot;])
+region7 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Southeastern Asia&quot;][&quot;Percent Change&quot;])
+region8 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Southern Asia&quot;][&quot;Percent Change&quot;])
+region9 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Sub-Saharan Africa&quot;][&quot;Percent Change&quot;])
+region10 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Unknown&quot;][&quot;Percent Change&quot;])
+region11 = pd.Series(country_change[country_change[&quot;Region_x&quot;] ==&quot;Western Europe&quot;][&quot;Percent Change&quot;])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a scatter plot that plots a point for each country, labels it depending on the region, and plots it based on its
+# average percent change of happiness over 3 years
+fig,ax = plt.subplots(figsize=(20,10))
+ax.scatter(region1.index.values, region1, label=&#39;Australia and New Zealand&#39;)
+ax.scatter(region2.index.values, region2, label=&#39;Central and Eastern Europe&#39;)
+ax.scatter(region3.index.values, region3, label=&#39;Eastern Asia&#39;)
+ax.scatter(region4.index.values, region4, label=&#39;Latin America and Caribbean&#39;)
+ax.scatter(region5.index.values, region5, label=&#39;Middle East and Northern Africa&#39;)
+ax.scatter(region6.index.values, region6, label=&#39;North America&#39;)
+ax.scatter(region7.index.values, region7, label=&#39;Southeastern Asia&#39;)
+ax.scatter(region8.index.values, region8, label=&#39;Southern Asia&#39;)
+ax.scatter(region9.index.values, region9, label=&#39;Sub-Saharan Africa&#39;)
+ax.scatter(region10.index.values, region10, label=&#39;Unknown&#39;)
+ax.scatter(region11.index.values, region11, label=&#39;Western Europe&#39;)
+
+ax.set_xlabel(&#39;Countries&#39;)
+ax.set_ylabel(&#39;Percent Change&#39;)
+ax.set_title(&quot;Countries&#39; Happiness Score Percent Change by Region&quot;)
+ax.legend()
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[18]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.legend.Legend at 0x7fd24702be80&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_23_1.png" src="../_images/notebooks_finalproject_23_1.png" />
+</div>
+</div>
+<p>Western Europe seems to be relatively stable when it comes to percent
+change. However, Sub-Saharan Africa seems to change drastically with
+some countries with high percent changes, and some countries with the
+complete opposite change.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a correlation graph between trust an family for each country.
+import matplotlib.lines as mlines
+import matplotlib.transforms as mtransforms
+
+trust_family = pd.Series(happy[&quot;Family&quot;].values, index=happy[&quot;Trust (Government Corruption)&quot;].values)
+fig,ax = plt.subplots(figsize=(20,10))
+
+lineStart = trust_family.index.values.min()
+lineEnd = trust_family.index.values.max()
+
+ax.scatter(trust_family.index.values, trust_family.values)
+ax.set_xlabel(&#39;Trust&#39;)
+ax.set_ylabel(&#39;Family&#39;)
+ax.set_title(&quot;Correlation between Trust and Family&quot;)
+line = mlines.Line2D([0, 1], [0, 1], color=&#39;black&#39;)
+transform = ax.transAxes
+line.set_transform(transform)
+ax.add_line(line)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_25_0.png" src="../_images/notebooks_finalproject_25_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create seperate series for each category by grouping by year to get the average score for each category per year.
+family_by_year = happy.groupby(&#39;Year&#39;)[&#39;Family&#39;].mean()
+freedom_by_year = happy.groupby(&#39;Year&#39;)[&#39;Freedom&#39;].mean()
+dystopia_by_year = happy.groupby(&#39;Year&#39;)[&#39;Dystopia Residual&#39;].mean()
+economy_by_year = happy.groupby(&#39;Year&#39;)[&#39;Economy (GDP per Capita)&#39;].mean()
+health_by_year = happy.groupby(&#39;Year&#39;)[&#39;Health (Life Expectancy)&#39;].mean()
+trust_by_year = happy.groupby(&#39;Year&#39;)[&#39;Trust (Government Corruption)&#39;].mean()
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Created a plot of the average score for each category over 3 years
+fig, ax = plt.subplots(figsize=(14,4), linewidth=5, edgecolor=&#39;.5&#39;)
+ax.plot(family_by_year.index.values, family_by_year.values, label=&quot;Family&quot;)
+ax.plot(family_by_year.index.values, freedom_by_year.values, label=&quot;Freedom&quot;)
+ax.plot(family_by_year.index.values, dystopia_by_year.values, label=&quot;Dystopia Residual&quot;)
+ax.plot(family_by_year.index.values, economy_by_year.values, label=&quot;Economy&quot;)
+ax.plot(family_by_year.index.values, health_by_year.values, label=&quot;Health&quot;)
+ax.plot(family_by_year.index.values, trust_by_year.values, label=&quot;Trust&quot;)
+ax.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0)
+plt.xticks([2015, 2016, 2017])
+ax.set_ylabel(&#39;Average Score&#39;)
+ax.set_title(&#39;Average Score by Category for Each Year&#39;)
+ax.set_xlabel(&#39;Year&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[21]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0.5,0,&#39;Year&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_27_1.png" src="../_images/notebooks_finalproject_27_1.png" />
+</div>
+</div>
+<p>Dystopia Residual went up in 2016 but dropped down in 2017, whereas
+family went down in 2016 but back up in 2017. Economy has slightly gone
+up over the years, but other than that the other categories are almost
+linear.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># I made a series for each category, grouping by Happiness Rank and finding the mean of the category for every rank.
+family_by_rank = happy.groupby(&#39;Happiness Rank&#39;)[&#39;Family&#39;].mean()
+freedom_by_rank = happy.groupby(&#39;Happiness Rank&#39;)[&#39;Freedom&#39;].mean()
+dystopia_by_rank = happy.groupby(&#39;Happiness Rank&#39;)[&#39;Dystopia Residual&#39;].mean()
+economy_by_rank = happy.groupby(&#39;Happiness Rank&#39;)[&#39;Economy (GDP per Capita)&#39;].mean()
+health_by_rank = happy.groupby(&#39;Happiness Rank&#39;)[&#39;Health (Life Expectancy)&#39;].mean()
+trust_by_rank = happy.groupby(&#39;Happiness Rank&#39;)[&#39;Trust (Government Corruption)&#39;].mean()
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Created a plot to show happiness rank&#39;s mean score for each category over 3 years
+fig, ax = plt.subplots(figsize=(14,4), linewidth=5, edgecolor=&#39;.5&#39;)
+ax.plot(family_by_rank.index.values, family_by_rank.values, label=&quot;Family&quot;)
+ax.plot(family_by_rank.index.values, freedom_by_rank.values, label=&quot;Freedom&quot;)
+ax.plot(family_by_rank.index.values, dystopia_by_rank.values, label=&quot;Dystopia Residual&quot;)
+ax.plot(family_by_rank.index.values, economy_by_rank.values, label=&quot;Economy&quot;)
+ax.plot(family_by_rank.index.values, health_by_rank.values, label=&quot;Health&quot;)
+ax.plot(family_by_rank.index.values, trust_by_rank.values, label=&quot;Trust&quot;)
+ax.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0)
+ax.set_title(&#39;Average Score by category for every Rank&#39;)
+ax.set_ylabel(&#39;Average Score by Category&#39;)
+ax.set_xlabel(&#39;Happiness Rank&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[23]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0.5,0,&#39;Happiness Rank&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_30_1.png" src="../_images/notebooks_finalproject_30_1.png" />
+</div>
+</div>
+<p>There is a lot more variation in the line for some of the ranks than
+what one would assume over three years. Of course, the general trends
+moves down as Happiness Rank gets larger.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create a plot to show each year&#39;s average score in each category
+index = np.arange(3)
+bar_width = 0.10
+fig,ax = plt.subplots(figsize=(35,20))
+regions = family_by_year.index.values
+ax.bar(index, family_by_year, bar_width, label=&#39;Family&#39;)
+ax.bar(index + bar_width, freedom_by_year, bar_width, label=&#39;Freedom&#39;)
+ax.bar(index + bar_width*2, dystopia_by_year, bar_width, label=&#39;Dystopia Residual&#39;)
+ax.bar(index + bar_width*3, economy_by_year, bar_width, label=&#39;Economy&#39;)
+ax.bar(index + bar_width*4, health_by_year, bar_width, label=&#39;Health&#39;)
+ax.bar(index + bar_width*5, trust_by_year, bar_width, label=&#39;Trust&#39;)
+
+ax.set_xlabel(&#39;Year&#39;)
+ax.set_ylabel(&#39;Mean Score&#39;)
+ax.set_title(&#39;Mean Score of Happiness Categories for each Year&#39;)
+ax.set_xticks(index + bar_width*5 / 2)
+ax.set_xticklabels(regions)
+ax.legend()
+
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_32_0.png" src="../_images/notebooks_finalproject_32_0.png" />
+</div>
+</div>
+<p>Over the years, dystopia residual has moved down, while family has
+increased. Other than that, the general shape for each years remains
+similiar.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from ipywidgets import interact, interactive, fixed, interact_manual
+import ipywidgets as widgets
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Create interactive plot for each region and the differing categories
+def f(x):
+    fig,ax = plt.subplots(figsize=(35,15))
+    ax.set_xlabel(&#39;Region&#39;)
+    ax.set_ylabel(&#39;Mean Score&#39;)
+    if x == 0:
+        ax.bar(family_by_region.index.values, family_by_region)
+    elif x == 1:
+        ax.bar(freedom_by_region.index.values, freedom_by_region)
+    elif x == 2:
+        ax.bar(dystopia_by_region.index.values, dystopia_by_region)
+    elif x == 3:
+        ax.bar(economy_by_region.index.values, economy_by_region)
+    elif x == 4:
+        ax.bar(health_by_region.index.values, health_by_region)
+    else:
+        ax.bar(trust_by_region.index.values, trust_by_region)
+
+category = {&quot;Family&quot;:0, &quot;Freedom&quot;:1, &quot;Dystopia Residual&quot;:2, &quot;Economy&quot;:3, &quot;Health&quot;:4, &quot;Trust&quot;:5}
+interact(f, x=category)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "23696087f05941d4a112b2751c141950", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[26]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;function __main__.f(x)&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>def f(Australia_New_Zealand, Central_Europe, Eastern_Asia, Latin_America, Middle_East, North_America, Southeastern_Asia, Southern_Asia, Sub_Saharan, Unknown, Western_Europe):
+    fig,ax = plt.subplots(figsize=(20,10))
+    ax.set_xlabel(&#39;Countries&#39;)
+    ax.set_ylabel(&#39;Percent CSouthern_Asiaange&#39;)
+    ax.set_title(&quot;Countries&#39; Percent Change by Region&quot;)
+    if Australia_New_Zealand:
+        ax.scatter(region1.index.values, region1, label=&#39;Australia and New Zealand&#39;)
+    if Central_Europe:
+        ax.scatter(region2.index.values, region2, label=&#39;Central and Eastern Europe&#39;)
+    if Eastern_Asia:
+        ax.scatter(region3.index.values, region3, label=&#39;Eastern Asia&#39;)
+    if Latin_America:
+        ax.scatter(region4.index.values, region4, label=&#39;Latin America and Caribbean&#39;)
+    if Middle_East:
+        ax.scatter(region5.index.values, region5, label=&#39;Middle East and Northern Africa&#39;)
+    if North_America:
+        ax.scatter(region6.index.values, region6, label=&#39;North America&#39;)
+    if Southeastern_Asia:
+        ax.scatter(region7.index.values, region7, label=&#39;Southeastern Asia&#39;)
+    if Southern_Asia:
+        ax.scatter(region8.index.values, region8, label=&#39;Southern Asia&#39;)
+    if Sub_Saharan:
+        ax.scatter(region9.index.values, region9, label=&#39;Sub-Saharan Africa&#39;)
+    if Unknown:
+        ax.scatter(region10.index.values, region10, label=&#39;Unknown&#39;)
+    if Western_Europe:
+        ax.scatter(region11.index.values, region11, label=&#39;Western Europe&#39;)
+    ax.legend()
+interact(f, Australia_New_Zealand=True, Central_Europe=True, Eastern_Asia=True, Latin_America=True, Middle_East=True, \
+         North_America=True, Southeastern_Asia=True, Southern_Asia=True, Sub_Saharan=True, Unknown=True, Western_Europe=True)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "4abafdd20d944e1c9cefa300621e2445", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[27]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;function __main__.f(Australia_New_Zealand, Central_Europe, Eastern_Asia, Latin_America, Middle_East, North_America, Southeastern_Asia, Southern_Asia, Sub_Saharan, Unknown, Western_Europe)&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Creat series to show mean happiness over the years
+happiness_by_year = happy.groupby(&#39;Year&#39;)[&#39;Happiness Score&#39;].mean()
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>fig, ax = plt.subplots(figsize=(10,4), linewidth=5, edgecolor=&#39;.5&#39;)
+ax.plot(happiness_by_year.index.values, happiness_by_year.values, label=&quot;Family&quot;)
+plt.xticks([2015, 2016, 2017])
+ax.set_title(&#39;Average Happiness Score over 2015-2017&#39;)
+ax.set_ylabel(&#39;Average Happiness Score&#39;)
+ax.set_xlabel(&#39;Year&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[32]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0.5,0,&#39;Year&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_finalproject_39_1.png" src="../_images/notebooks_finalproject_39_1.png" />
+</div>
+</div>
+<p>Happiness Score goes up in 2016, but ends up dropping in 2017. However,
+this drop is only 0.03 decrease.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table of Contents</h3>
+          
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+            </form>
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="../_sources/notebooks/finalproject.ipynb.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Sydney Maule and Sam Woollums.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
