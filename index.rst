@@ -13,7 +13,7 @@ Happiness Report Analysis
 
 What does the world happiness look like?
 -----------------------------------------
-The main focus of our data analysis is answering "what does the world happines look like?". Is it increasing, decreasing or remaining the same? What regions of the world are happier? Which country is the happiest? What catgories are highest for the happiest countries and/or regions. In general, we want to find the trends of happiness and those specific categories for each country and region over the past three years. Also, with this knowledge in mind, it may help us describe our future or explain how events in the world may affect happiness score. 
+The main focus of our data analysis is answering "what does the world happines look like?". Is it increasing, decreasing or remaining the same? What regions of the world are happier? Which country is the happiest? What catgories are highest for the happiest countries and/or regions? In general, we want to find the trends of happiness and those specific categories for each country and region over the past three years. Also, with this knowledge in mind, it may help us describe our future or explain how events in the world may affect happiness score. 
 
 Data Acquisition
 -----------------
