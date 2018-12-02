@@ -1,0 +1,2459 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Happiness Report Analysis &#8212; Happy Report Analysis  documentation</title>
+    <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Happy Report Analysis  documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+</style>
+<div class="section" id="Happiness-Report-Analysis">
+<h1>Happiness Report Analysis<a class="headerlink" href="#Happiness-Report-Analysis" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+happy15 = pd.read_csv(&quot;happy2015.csv&quot;)
+happy16 = pd.read_csv(&#39;happy2016.csv&#39;)
+happy17 = pd.read_csv(&#39;happy2017.csv&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy15.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Region</th>
+      <th>Happiness Rank</th>
+      <th>Happiness Score</th>
+      <th>Standard Error</th>
+      <th>Economy (GDP per Capita)</th>
+      <th>Family</th>
+      <th>Health (Life Expectancy)</th>
+      <th>Freedom</th>
+      <th>Trust (Government Corruption)</th>
+      <th>Generosity</th>
+      <th>Dystopia Residual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Switzerland</td>
+      <td>Western Europe</td>
+      <td>1</td>
+      <td>7.587</td>
+      <td>0.03411</td>
+      <td>1.39651</td>
+      <td>1.34951</td>
+      <td>0.94143</td>
+      <td>0.66557</td>
+      <td>0.41978</td>
+      <td>0.29678</td>
+      <td>2.51738</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Iceland</td>
+      <td>Western Europe</td>
+      <td>2</td>
+      <td>7.561</td>
+      <td>0.04884</td>
+      <td>1.30232</td>
+      <td>1.40223</td>
+      <td>0.94784</td>
+      <td>0.62877</td>
+      <td>0.14145</td>
+      <td>0.43630</td>
+      <td>2.70201</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>Western Europe</td>
+      <td>3</td>
+      <td>7.527</td>
+      <td>0.03328</td>
+      <td>1.32548</td>
+      <td>1.36058</td>
+      <td>0.87464</td>
+      <td>0.64938</td>
+      <td>0.48357</td>
+      <td>0.34139</td>
+      <td>2.49204</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Norway</td>
+      <td>Western Europe</td>
+      <td>4</td>
+      <td>7.522</td>
+      <td>0.03880</td>
+      <td>1.45900</td>
+      <td>1.33095</td>
+      <td>0.88521</td>
+      <td>0.66973</td>
+      <td>0.36503</td>
+      <td>0.34699</td>
+      <td>2.46531</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Canada</td>
+      <td>North America</td>
+      <td>5</td>
+      <td>7.427</td>
+      <td>0.03553</td>
+      <td>1.32629</td>
+      <td>1.32261</td>
+      <td>0.90563</td>
+      <td>0.63297</td>
+      <td>0.32957</td>
+      <td>0.45811</td>
+      <td>2.45176</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy15.info()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 158 entries, 0 to 157
+Data columns (total 12 columns):
+Country                          158 non-null object
+Region                           158 non-null object
+Happiness Rank                   158 non-null int64
+Happiness Score                  158 non-null float64
+Standard Error                   158 non-null float64
+Economy (GDP per Capita)         158 non-null float64
+Family                           158 non-null float64
+Health (Life Expectancy)         158 non-null float64
+Freedom                          158 non-null float64
+Trust (Government Corruption)    158 non-null float64
+Generosity                       158 non-null float64
+Dystopia Residual                158 non-null float64
+dtypes: float64(9), int64(1), object(2)
+memory usage: 14.9+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy16.info()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 157 entries, 0 to 156
+Data columns (total 13 columns):
+Country                          157 non-null object
+Region                           157 non-null object
+Happiness Rank                   157 non-null int64
+Happiness Score                  157 non-null float64
+Lower Confidence Interval        157 non-null float64
+Upper Confidence Interval        157 non-null float64
+Economy (GDP per Capita)         157 non-null float64
+Family                           157 non-null float64
+Health (Life Expectancy)         157 non-null float64
+Freedom                          157 non-null float64
+Trust (Government Corruption)    157 non-null float64
+Generosity                       157 non-null float64
+Dystopia Residual                157 non-null float64
+dtypes: float64(10), int64(1), object(2)
+memory usage: 16.0+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy17.info()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 155 entries, 0 to 154
+Data columns (total 12 columns):
+Country                          155 non-null object
+Happiness.Rank                   155 non-null int64
+Happiness.Score                  155 non-null float64
+Whisker.high                     155 non-null float64
+Whisker.low                      155 non-null float64
+Economy..GDP.per.Capita.         155 non-null float64
+Family                           155 non-null float64
+Health..Life.Expectancy.         155 non-null float64
+Freedom                          155 non-null float64
+Generosity                       155 non-null float64
+Trust..Government.Corruption.    155 non-null float64
+Dystopia.Residual                155 non-null float64
+dtypes: float64(10), int64(1), object(1)
+memory usage: 14.6+ KB
+</pre></div></div>
+</div>
+<p>I have to change the column names in the 2017 data because they are not
+the same as the other data sets.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy17 = happy17.rename(columns={&quot;Happiness.Rank&quot;: &quot;Happiness Rank&quot;,
+                                      &quot;Happiness.Score&quot;: &quot;Happiness Score&quot;,
+                                     &quot;Economy..GDP.per.Capita.&quot;: &#39;Economy (GDP per Capita)&#39;,
+                                     &#39;Health..Life.Expectancy.&#39;: &quot;Health (Life Expectancy)&quot;,
+                                     &quot;Trust..Government.Corruption.&quot;: &quot;Trust (Government Corruption)&quot;,
+                                     &quot;Dystopia.Residual&quot;: &quot;Dystopia Residual&quot;})
+happy17.info()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 155 entries, 0 to 154
+Data columns (total 12 columns):
+Country                          155 non-null object
+Happiness Rank                   155 non-null int64
+Happiness Score                  155 non-null float64
+Whisker.high                     155 non-null float64
+Whisker.low                      155 non-null float64
+Economy (GDP per Capita)         155 non-null float64
+Family                           155 non-null float64
+Health (Life Expectancy)         155 non-null float64
+Freedom                          155 non-null float64
+Generosity                       155 non-null float64
+Trust (Government Corruption)    155 non-null float64
+Dystopia Residual                155 non-null float64
+dtypes: float64(10), int64(1), object(1)
+memory usage: 14.6+ KB
+</pre></div></div>
+</div>
+<p>I have to create a column in each data set for the year of the data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy15[&#39;Year&#39;] = 2015
+happy16[&#39;Year&#39;] = 2016
+happy17[&#39;Year&#39;] = 2017
+</pre></div>
+</div>
+</div>
+<p>I then have to make a region column for the 2017 data because there is
+not one.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>h = happy15[[&#39;Country&#39;,&#39;Region&#39;]]
+countries = dict(h.values)
+happy17[&#39;Region&#39;] = &#39;Region&#39;
+for c in happy17.index:
+    if happy17.at[c, &#39;Country&#39;] in countries:
+        happy17.at[c, &#39;Region&#39;] = countries[happy17.at[c, &#39;Country&#39;]]
+    else:
+        happy17.at[c, &#39;Region&#39;] = &#39;Unknown&#39;
+happy17.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[39]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Happiness Rank</th>
+      <th>Happiness Score</th>
+      <th>Whisker.high</th>
+      <th>Whisker.low</th>
+      <th>Economy (GDP per Capita)</th>
+      <th>Family</th>
+      <th>Health (Life Expectancy)</th>
+      <th>Freedom</th>
+      <th>Generosity</th>
+      <th>Trust (Government Corruption)</th>
+      <th>Dystopia Residual</th>
+      <th>Year</th>
+      <th>Region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Norway</td>
+      <td>1</td>
+      <td>7.537</td>
+      <td>7.594445</td>
+      <td>7.479556</td>
+      <td>1.616463</td>
+      <td>1.533524</td>
+      <td>0.796667</td>
+      <td>0.635423</td>
+      <td>0.362012</td>
+      <td>0.315964</td>
+      <td>2.277027</td>
+      <td>2017</td>
+      <td>Western Europe</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Denmark</td>
+      <td>2</td>
+      <td>7.522</td>
+      <td>7.581728</td>
+      <td>7.462272</td>
+      <td>1.482383</td>
+      <td>1.551122</td>
+      <td>0.792566</td>
+      <td>0.626007</td>
+      <td>0.355280</td>
+      <td>0.400770</td>
+      <td>2.313707</td>
+      <td>2017</td>
+      <td>Western Europe</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Iceland</td>
+      <td>3</td>
+      <td>7.504</td>
+      <td>7.622030</td>
+      <td>7.385970</td>
+      <td>1.480633</td>
+      <td>1.610574</td>
+      <td>0.833552</td>
+      <td>0.627163</td>
+      <td>0.475540</td>
+      <td>0.153527</td>
+      <td>2.322715</td>
+      <td>2017</td>
+      <td>Western Europe</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Switzerland</td>
+      <td>4</td>
+      <td>7.494</td>
+      <td>7.561772</td>
+      <td>7.426227</td>
+      <td>1.564980</td>
+      <td>1.516912</td>
+      <td>0.858131</td>
+      <td>0.620071</td>
+      <td>0.290549</td>
+      <td>0.367007</td>
+      <td>2.276716</td>
+      <td>2017</td>
+      <td>Western Europe</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Finland</td>
+      <td>5</td>
+      <td>7.469</td>
+      <td>7.527542</td>
+      <td>7.410458</td>
+      <td>1.443572</td>
+      <td>1.540247</td>
+      <td>0.809158</td>
+      <td>0.617951</td>
+      <td>0.245483</td>
+      <td>0.382612</td>
+      <td>2.430182</td>
+      <td>2017</td>
+      <td>Western Europe</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>I combine the datasets into one dataset</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>frames = [happy15, happy16, happy17]
+happy = pd.concat(frames)
+happy = happy.set_index([&#39;Country&#39;])
+happy = happy.reset_index()
+happy
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[46]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Dystopia Residual</th>
+      <th>Economy (GDP per Capita)</th>
+      <th>Family</th>
+      <th>Freedom</th>
+      <th>Generosity</th>
+      <th>Happiness Rank</th>
+      <th>Happiness Score</th>
+      <th>Health (Life Expectancy)</th>
+      <th>Lower Confidence Interval</th>
+      <th>Region</th>
+      <th>Standard Error</th>
+      <th>Trust (Government Corruption)</th>
+      <th>Upper Confidence Interval</th>
+      <th>Whisker.high</th>
+      <th>Whisker.low</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Switzerland</td>
+      <td>2.517380</td>
+      <td>1.396510</td>
+      <td>1.349510</td>
+      <td>0.665570</td>
+      <td>0.296780</td>
+      <td>1</td>
+      <td>7.587</td>
+      <td>0.941430</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03411</td>
+      <td>0.419780</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Iceland</td>
+      <td>2.702010</td>
+      <td>1.302320</td>
+      <td>1.402230</td>
+      <td>0.628770</td>
+      <td>0.436300</td>
+      <td>2</td>
+      <td>7.561</td>
+      <td>0.947840</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.04884</td>
+      <td>0.141450</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Denmark</td>
+      <td>2.492040</td>
+      <td>1.325480</td>
+      <td>1.360580</td>
+      <td>0.649380</td>
+      <td>0.341390</td>
+      <td>3</td>
+      <td>7.527</td>
+      <td>0.874640</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03328</td>
+      <td>0.483570</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Norway</td>
+      <td>2.465310</td>
+      <td>1.459000</td>
+      <td>1.330950</td>
+      <td>0.669730</td>
+      <td>0.346990</td>
+      <td>4</td>
+      <td>7.522</td>
+      <td>0.885210</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03880</td>
+      <td>0.365030</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Canada</td>
+      <td>2.451760</td>
+      <td>1.326290</td>
+      <td>1.322610</td>
+      <td>0.632970</td>
+      <td>0.458110</td>
+      <td>5</td>
+      <td>7.427</td>
+      <td>0.905630</td>
+      <td>NaN</td>
+      <td>North America</td>
+      <td>0.03553</td>
+      <td>0.329570</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Finland</td>
+      <td>2.619550</td>
+      <td>1.290250</td>
+      <td>1.318260</td>
+      <td>0.641690</td>
+      <td>0.233510</td>
+      <td>6</td>
+      <td>7.406</td>
+      <td>0.889110</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03140</td>
+      <td>0.413720</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Netherlands</td>
+      <td>2.465700</td>
+      <td>1.329440</td>
+      <td>1.280170</td>
+      <td>0.615760</td>
+      <td>0.476100</td>
+      <td>7</td>
+      <td>7.378</td>
+      <td>0.892840</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.02799</td>
+      <td>0.318140</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Sweden</td>
+      <td>2.371190</td>
+      <td>1.331710</td>
+      <td>1.289070</td>
+      <td>0.659800</td>
+      <td>0.362620</td>
+      <td>8</td>
+      <td>7.364</td>
+      <td>0.910870</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03157</td>
+      <td>0.438440</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>New Zealand</td>
+      <td>2.264250</td>
+      <td>1.250180</td>
+      <td>1.319670</td>
+      <td>0.639380</td>
+      <td>0.475010</td>
+      <td>9</td>
+      <td>7.286</td>
+      <td>0.908370</td>
+      <td>NaN</td>
+      <td>Australia and New Zealand</td>
+      <td>0.03371</td>
+      <td>0.429220</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Australia</td>
+      <td>2.266460</td>
+      <td>1.333580</td>
+      <td>1.309230</td>
+      <td>0.651240</td>
+      <td>0.435620</td>
+      <td>10</td>
+      <td>7.284</td>
+      <td>0.931560</td>
+      <td>NaN</td>
+      <td>Australia and New Zealand</td>
+      <td>0.04083</td>
+      <td>0.356370</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Israel</td>
+      <td>3.088540</td>
+      <td>1.228570</td>
+      <td>1.223930</td>
+      <td>0.413190</td>
+      <td>0.331720</td>
+      <td>11</td>
+      <td>7.278</td>
+      <td>0.913870</td>
+      <td>NaN</td>
+      <td>Middle East and Northern Africa</td>
+      <td>0.03470</td>
+      <td>0.077850</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Costa Rica</td>
+      <td>3.177280</td>
+      <td>0.955780</td>
+      <td>1.237880</td>
+      <td>0.633760</td>
+      <td>0.254970</td>
+      <td>12</td>
+      <td>7.226</td>
+      <td>0.860270</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>0.04454</td>
+      <td>0.105830</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Austria</td>
+      <td>2.533200</td>
+      <td>1.337230</td>
+      <td>1.297040</td>
+      <td>0.624330</td>
+      <td>0.330880</td>
+      <td>13</td>
+      <td>7.200</td>
+      <td>0.890420</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03751</td>
+      <td>0.186760</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Mexico</td>
+      <td>3.602140</td>
+      <td>1.020540</td>
+      <td>0.914510</td>
+      <td>0.481810</td>
+      <td>0.140740</td>
+      <td>14</td>
+      <td>7.187</td>
+      <td>0.814440</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>0.04176</td>
+      <td>0.213120</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>United States</td>
+      <td>2.510110</td>
+      <td>1.394510</td>
+      <td>1.247110</td>
+      <td>0.546040</td>
+      <td>0.401050</td>
+      <td>15</td>
+      <td>7.119</td>
+      <td>0.861790</td>
+      <td>NaN</td>
+      <td>North America</td>
+      <td>0.03839</td>
+      <td>0.158900</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Brazil</td>
+      <td>3.260010</td>
+      <td>0.981240</td>
+      <td>1.232870</td>
+      <td>0.490490</td>
+      <td>0.145740</td>
+      <td>16</td>
+      <td>6.983</td>
+      <td>0.697020</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>0.04076</td>
+      <td>0.175210</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Luxembourg</td>
+      <td>1.969610</td>
+      <td>1.563910</td>
+      <td>1.219630</td>
+      <td>0.615830</td>
+      <td>0.280340</td>
+      <td>17</td>
+      <td>6.946</td>
+      <td>0.918940</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03499</td>
+      <td>0.377980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Ireland</td>
+      <td>1.975700</td>
+      <td>1.335960</td>
+      <td>1.369480</td>
+      <td>0.617770</td>
+      <td>0.459010</td>
+      <td>18</td>
+      <td>6.940</td>
+      <td>0.895330</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03676</td>
+      <td>0.287030</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Belgium</td>
+      <td>2.414840</td>
+      <td>1.307820</td>
+      <td>1.285660</td>
+      <td>0.584500</td>
+      <td>0.222500</td>
+      <td>19</td>
+      <td>6.937</td>
+      <td>0.896670</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03595</td>
+      <td>0.225400</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>United Arab Emirates</td>
+      <td>2.247430</td>
+      <td>1.427270</td>
+      <td>1.125750</td>
+      <td>0.641570</td>
+      <td>0.264280</td>
+      <td>20</td>
+      <td>6.901</td>
+      <td>0.809250</td>
+      <td>NaN</td>
+      <td>Middle East and Northern Africa</td>
+      <td>0.03729</td>
+      <td>0.385830</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>United Kingdom</td>
+      <td>1.969940</td>
+      <td>1.266370</td>
+      <td>1.285480</td>
+      <td>0.596250</td>
+      <td>0.519120</td>
+      <td>21</td>
+      <td>6.867</td>
+      <td>0.909430</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.01866</td>
+      <td>0.320670</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Oman</td>
+      <td>2.474890</td>
+      <td>1.360110</td>
+      <td>1.081820</td>
+      <td>0.632740</td>
+      <td>0.215420</td>
+      <td>22</td>
+      <td>6.853</td>
+      <td>0.762760</td>
+      <td>NaN</td>
+      <td>Middle East and Northern Africa</td>
+      <td>0.05335</td>
+      <td>0.325240</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Venezuela</td>
+      <td>3.191310</td>
+      <td>1.044240</td>
+      <td>1.255960</td>
+      <td>0.429080</td>
+      <td>0.058410</td>
+      <td>23</td>
+      <td>6.810</td>
+      <td>0.720520</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>0.06476</td>
+      <td>0.110690</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Singapore</td>
+      <td>1.885010</td>
+      <td>1.521860</td>
+      <td>1.020000</td>
+      <td>0.542520</td>
+      <td>0.311050</td>
+      <td>24</td>
+      <td>6.798</td>
+      <td>1.025250</td>
+      <td>NaN</td>
+      <td>Southeastern Asia</td>
+      <td>0.03780</td>
+      <td>0.492100</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Panama</td>
+      <td>2.848480</td>
+      <td>1.063530</td>
+      <td>1.198500</td>
+      <td>0.542100</td>
+      <td>0.244340</td>
+      <td>25</td>
+      <td>6.786</td>
+      <td>0.796610</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>0.04910</td>
+      <td>0.092700</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Germany</td>
+      <td>2.115690</td>
+      <td>1.327920</td>
+      <td>1.299370</td>
+      <td>0.614770</td>
+      <td>0.282140</td>
+      <td>26</td>
+      <td>6.750</td>
+      <td>0.891860</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.01848</td>
+      <td>0.218430</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Chile</td>
+      <td>2.675850</td>
+      <td>1.107150</td>
+      <td>1.124470</td>
+      <td>0.441320</td>
+      <td>0.333630</td>
+      <td>27</td>
+      <td>6.670</td>
+      <td>0.858570</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>0.05800</td>
+      <td>0.128690</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Qatar</td>
+      <td>1.556740</td>
+      <td>1.690420</td>
+      <td>1.078600</td>
+      <td>0.640400</td>
+      <td>0.325730</td>
+      <td>28</td>
+      <td>6.611</td>
+      <td>0.797330</td>
+      <td>NaN</td>
+      <td>Middle East and Northern Africa</td>
+      <td>0.06257</td>
+      <td>0.522080</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>France</td>
+      <td>2.211260</td>
+      <td>1.277780</td>
+      <td>1.260380</td>
+      <td>0.550110</td>
+      <td>0.123320</td>
+      <td>29</td>
+      <td>6.575</td>
+      <td>0.945790</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03512</td>
+      <td>0.206460</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Argentina</td>
+      <td>2.836000</td>
+      <td>1.053510</td>
+      <td>1.248230</td>
+      <td>0.449740</td>
+      <td>0.114510</td>
+      <td>30</td>
+      <td>6.574</td>
+      <td>0.787230</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>0.04612</td>
+      <td>0.084840</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>440</th>
+      <td>Congo (Kinshasa)</td>
+      <td>2.224959</td>
+      <td>0.092102</td>
+      <td>1.229023</td>
+      <td>0.235961</td>
+      <td>0.246456</td>
+      <td>126</td>
+      <td>4.280</td>
+      <td>0.191407</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.060241</td>
+      <td>NaN</td>
+      <td>4.357811</td>
+      <td>4.202190</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>441</th>
+      <td>Mali</td>
+      <td>1.668191</td>
+      <td>0.476180</td>
+      <td>1.281473</td>
+      <td>0.306614</td>
+      <td>0.183354</td>
+      <td>127</td>
+      <td>4.190</td>
+      <td>0.169366</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.104970</td>
+      <td>NaN</td>
+      <td>4.269671</td>
+      <td>4.110329</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>442</th>
+      <td>Ivory Coast</td>
+      <td>1.844964</td>
+      <td>0.603049</td>
+      <td>0.904780</td>
+      <td>0.447706</td>
+      <td>0.201237</td>
+      <td>128</td>
+      <td>4.180</td>
+      <td>0.048642</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.130062</td>
+      <td>NaN</td>
+      <td>4.275183</td>
+      <td>4.084817</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>443</th>
+      <td>Cambodia</td>
+      <td>1.042941</td>
+      <td>0.601765</td>
+      <td>1.006238</td>
+      <td>0.633376</td>
+      <td>0.385923</td>
+      <td>129</td>
+      <td>4.168</td>
+      <td>0.429783</td>
+      <td>NaN</td>
+      <td>Southeastern Asia</td>
+      <td>NaN</td>
+      <td>0.068106</td>
+      <td>NaN</td>
+      <td>4.278518</td>
+      <td>4.057483</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>444</th>
+      <td>Sudan</td>
+      <td>1.687066</td>
+      <td>0.659517</td>
+      <td>1.214009</td>
+      <td>0.014996</td>
+      <td>0.182317</td>
+      <td>130</td>
+      <td>4.139</td>
+      <td>0.290921</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.089848</td>
+      <td>NaN</td>
+      <td>4.345747</td>
+      <td>3.932253</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>445</th>
+      <td>Ghana</td>
+      <td>1.577868</td>
+      <td>0.667225</td>
+      <td>0.873665</td>
+      <td>0.423026</td>
+      <td>0.256924</td>
+      <td>131</td>
+      <td>4.120</td>
+      <td>0.295638</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.025336</td>
+      <td>NaN</td>
+      <td>4.222707</td>
+      <td>4.017293</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>446</th>
+      <td>Ukraine</td>
+      <td>0.814382</td>
+      <td>0.894652</td>
+      <td>1.394538</td>
+      <td>0.122975</td>
+      <td>0.270061</td>
+      <td>132</td>
+      <td>4.096</td>
+      <td>0.575904</td>
+      <td>NaN</td>
+      <td>Central and Eastern Europe</td>
+      <td>NaN</td>
+      <td>0.023029</td>
+      <td>NaN</td>
+      <td>4.185410</td>
+      <td>4.006590</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>447</th>
+      <td>Uganda</td>
+      <td>1.526363</td>
+      <td>0.381431</td>
+      <td>1.129828</td>
+      <td>0.443186</td>
+      <td>0.325766</td>
+      <td>133</td>
+      <td>4.081</td>
+      <td>0.217633</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.057070</td>
+      <td>NaN</td>
+      <td>4.195800</td>
+      <td>3.966200</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>448</th>
+      <td>Burkina Faso</td>
+      <td>1.727213</td>
+      <td>0.350228</td>
+      <td>1.043280</td>
+      <td>0.324368</td>
+      <td>0.250865</td>
+      <td>134</td>
+      <td>4.032</td>
+      <td>0.215844</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.120328</td>
+      <td>NaN</td>
+      <td>4.124059</td>
+      <td>3.939941</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>449</th>
+      <td>Niger</td>
+      <td>1.873983</td>
+      <td>0.161925</td>
+      <td>0.993025</td>
+      <td>0.363659</td>
+      <td>0.228674</td>
+      <td>135</td>
+      <td>4.028</td>
+      <td>0.268505</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.138573</td>
+      <td>NaN</td>
+      <td>4.111947</td>
+      <td>3.944053</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>450</th>
+      <td>Malawi</td>
+      <td>2.081786</td>
+      <td>0.233442</td>
+      <td>0.512569</td>
+      <td>0.466915</td>
+      <td>0.287170</td>
+      <td>136</td>
+      <td>3.970</td>
+      <td>0.315090</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.072712</td>
+      <td>NaN</td>
+      <td>4.077479</td>
+      <td>3.862521</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>451</th>
+      <td>Chad</td>
+      <td>2.071238</td>
+      <td>0.438013</td>
+      <td>0.953856</td>
+      <td>0.162342</td>
+      <td>0.216114</td>
+      <td>137</td>
+      <td>3.936</td>
+      <td>0.041135</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.053582</td>
+      <td>NaN</td>
+      <td>4.034712</td>
+      <td>3.837289</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>452</th>
+      <td>Zimbabwe</td>
+      <td>1.597970</td>
+      <td>0.375847</td>
+      <td>1.083096</td>
+      <td>0.336384</td>
+      <td>0.189143</td>
+      <td>138</td>
+      <td>3.875</td>
+      <td>0.196764</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.095375</td>
+      <td>NaN</td>
+      <td>3.978700</td>
+      <td>3.771300</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>453</th>
+      <td>Lesotho</td>
+      <td>1.429835</td>
+      <td>0.521021</td>
+      <td>1.190095</td>
+      <td>0.390661</td>
+      <td>0.157497</td>
+      <td>139</td>
+      <td>3.808</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.119095</td>
+      <td>NaN</td>
+      <td>4.044344</td>
+      <td>3.571656</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>454</th>
+      <td>Angola</td>
+      <td>1.614482</td>
+      <td>0.858428</td>
+      <td>1.104412</td>
+      <td>0.000000</td>
+      <td>0.097926</td>
+      <td>140</td>
+      <td>3.795</td>
+      <td>0.049869</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.069720</td>
+      <td>NaN</td>
+      <td>3.951642</td>
+      <td>3.638358</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>455</th>
+      <td>Afghanistan</td>
+      <td>2.150801</td>
+      <td>0.401477</td>
+      <td>0.581543</td>
+      <td>0.106180</td>
+      <td>0.311871</td>
+      <td>141</td>
+      <td>3.794</td>
+      <td>0.180747</td>
+      <td>NaN</td>
+      <td>Southern Asia</td>
+      <td>NaN</td>
+      <td>0.061158</td>
+      <td>NaN</td>
+      <td>3.873661</td>
+      <td>3.714338</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>456</th>
+      <td>Botswana</td>
+      <td>0.377914</td>
+      <td>1.122094</td>
+      <td>1.221555</td>
+      <td>0.505196</td>
+      <td>0.099348</td>
+      <td>142</td>
+      <td>3.766</td>
+      <td>0.341756</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.098583</td>
+      <td>NaN</td>
+      <td>3.874123</td>
+      <td>3.657877</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>457</th>
+      <td>Benin</td>
+      <td>1.885631</td>
+      <td>0.431085</td>
+      <td>0.435300</td>
+      <td>0.425963</td>
+      <td>0.207948</td>
+      <td>143</td>
+      <td>3.657</td>
+      <td>0.209930</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.060929</td>
+      <td>NaN</td>
+      <td>3.745784</td>
+      <td>3.568217</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>458</th>
+      <td>Madagascar</td>
+      <td>1.584613</td>
+      <td>0.305809</td>
+      <td>0.913020</td>
+      <td>0.189197</td>
+      <td>0.208733</td>
+      <td>144</td>
+      <td>3.644</td>
+      <td>0.375223</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.067232</td>
+      <td>NaN</td>
+      <td>3.714319</td>
+      <td>3.573681</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>459</th>
+      <td>Haiti</td>
+      <td>1.697168</td>
+      <td>0.368610</td>
+      <td>0.640450</td>
+      <td>0.030370</td>
+      <td>0.489204</td>
+      <td>145</td>
+      <td>3.603</td>
+      <td>0.277321</td>
+      <td>NaN</td>
+      <td>Latin America and Caribbean</td>
+      <td>NaN</td>
+      <td>0.099872</td>
+      <td>NaN</td>
+      <td>3.734715</td>
+      <td>3.471285</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>460</th>
+      <td>Yemen</td>
+      <td>1.345601</td>
+      <td>0.591683</td>
+      <td>0.935382</td>
+      <td>0.249464</td>
+      <td>0.104125</td>
+      <td>146</td>
+      <td>3.593</td>
+      <td>0.310081</td>
+      <td>NaN</td>
+      <td>Middle East and Northern Africa</td>
+      <td>NaN</td>
+      <td>0.056767</td>
+      <td>NaN</td>
+      <td>3.692750</td>
+      <td>3.493250</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>461</th>
+      <td>South Sudan</td>
+      <td>1.879567</td>
+      <td>0.397249</td>
+      <td>0.601323</td>
+      <td>0.147062</td>
+      <td>0.285671</td>
+      <td>147</td>
+      <td>3.591</td>
+      <td>0.163486</td>
+      <td>NaN</td>
+      <td>Unknown</td>
+      <td>NaN</td>
+      <td>0.116794</td>
+      <td>NaN</td>
+      <td>3.725539</td>
+      <td>3.456462</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>462</th>
+      <td>Liberia</td>
+      <td>1.673286</td>
+      <td>0.119042</td>
+      <td>0.872118</td>
+      <td>0.332881</td>
+      <td>0.266550</td>
+      <td>148</td>
+      <td>3.533</td>
+      <td>0.229918</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.038948</td>
+      <td>NaN</td>
+      <td>3.653756</td>
+      <td>3.412244</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>463</th>
+      <td>Guinea</td>
+      <td>1.552312</td>
+      <td>0.244550</td>
+      <td>0.791245</td>
+      <td>0.348588</td>
+      <td>0.264815</td>
+      <td>149</td>
+      <td>3.507</td>
+      <td>0.194129</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.110938</td>
+      <td>NaN</td>
+      <td>3.584428</td>
+      <td>3.429572</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>464</th>
+      <td>Togo</td>
+      <td>1.837229</td>
+      <td>0.305445</td>
+      <td>0.431883</td>
+      <td>0.380426</td>
+      <td>0.196896</td>
+      <td>150</td>
+      <td>3.495</td>
+      <td>0.247106</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.095665</td>
+      <td>NaN</td>
+      <td>3.594038</td>
+      <td>3.395962</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>465</th>
+      <td>Rwanda</td>
+      <td>0.540061</td>
+      <td>0.368746</td>
+      <td>0.945707</td>
+      <td>0.581844</td>
+      <td>0.252756</td>
+      <td>151</td>
+      <td>3.471</td>
+      <td>0.326425</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.455220</td>
+      <td>NaN</td>
+      <td>3.543030</td>
+      <td>3.398970</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>466</th>
+      <td>Syria</td>
+      <td>1.061574</td>
+      <td>0.777153</td>
+      <td>0.396103</td>
+      <td>0.081539</td>
+      <td>0.493664</td>
+      <td>152</td>
+      <td>3.462</td>
+      <td>0.500533</td>
+      <td>NaN</td>
+      <td>Middle East and Northern Africa</td>
+      <td>NaN</td>
+      <td>0.151347</td>
+      <td>NaN</td>
+      <td>3.663669</td>
+      <td>3.260331</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>467</th>
+      <td>Tanzania</td>
+      <td>0.621130</td>
+      <td>0.511136</td>
+      <td>1.041990</td>
+      <td>0.390018</td>
+      <td>0.354256</td>
+      <td>153</td>
+      <td>3.349</td>
+      <td>0.364509</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.066035</td>
+      <td>NaN</td>
+      <td>3.461430</td>
+      <td>3.236570</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>468</th>
+      <td>Burundi</td>
+      <td>1.683024</td>
+      <td>0.091623</td>
+      <td>0.629794</td>
+      <td>0.059901</td>
+      <td>0.204435</td>
+      <td>154</td>
+      <td>2.905</td>
+      <td>0.151611</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.084148</td>
+      <td>NaN</td>
+      <td>3.074690</td>
+      <td>2.735310</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>469</th>
+      <td>Central African Republic</td>
+      <td>2.066005</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.270842</td>
+      <td>0.280876</td>
+      <td>155</td>
+      <td>2.693</td>
+      <td>0.018773</td>
+      <td>NaN</td>
+      <td>Sub-Saharan Africa</td>
+      <td>NaN</td>
+      <td>0.056565</td>
+      <td>NaN</td>
+      <td>2.864884</td>
+      <td>2.521116</td>
+      <td>2017</td>
+    </tr>
+  </tbody>
+</table>
+<p>470 rows × 17 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy.to_csv(&quot;happy.csv&quot;, sep=&quot;,&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [73]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>#dataframe of the happiest country in each year
+happiest = happy.loc[happy[&#39;Happiness Rank&#39;] == 1]
+happiest
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[73]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Dystopia Residual</th>
+      <th>Economy (GDP per Capita)</th>
+      <th>Family</th>
+      <th>Freedom</th>
+      <th>Generosity</th>
+      <th>Happiness Rank</th>
+      <th>Happiness Score</th>
+      <th>Health (Life Expectancy)</th>
+      <th>Lower Confidence Interval</th>
+      <th>Region</th>
+      <th>Standard Error</th>
+      <th>Trust (Government Corruption)</th>
+      <th>Upper Confidence Interval</th>
+      <th>Whisker.high</th>
+      <th>Whisker.low</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Switzerland</td>
+      <td>2.517380</td>
+      <td>1.396510</td>
+      <td>1.349510</td>
+      <td>0.665570</td>
+      <td>0.296780</td>
+      <td>1</td>
+      <td>7.587</td>
+      <td>0.941430</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>0.03411</td>
+      <td>0.419780</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>Denmark</td>
+      <td>2.739390</td>
+      <td>1.441780</td>
+      <td>1.163740</td>
+      <td>0.579410</td>
+      <td>0.361710</td>
+      <td>1</td>
+      <td>7.526</td>
+      <td>0.795040</td>
+      <td>7.46</td>
+      <td>Western Europe</td>
+      <td>NaN</td>
+      <td>0.444530</td>
+      <td>7.592</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>315</th>
+      <td>Norway</td>
+      <td>2.277027</td>
+      <td>1.616463</td>
+      <td>1.533524</td>
+      <td>0.635423</td>
+      <td>0.362012</td>
+      <td>1</td>
+      <td>7.537</td>
+      <td>0.796667</td>
+      <td>NaN</td>
+      <td>Western Europe</td>
+      <td>NaN</td>
+      <td>0.315964</td>
+      <td>NaN</td>
+      <td>7.594445</td>
+      <td>7.479556</td>
+      <td>2017</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>#happiest country in each year with just the categories and the year
+happiestclean = happiest[[&#39;Year&#39;,&#39;Dystopia Residual&#39;, &#39;Economy (GDP per Capita)&#39;, &quot;Family&quot;,
+                         &#39;Freedom&#39;, &#39;Generosity&#39;, &#39;Health (Life Expectancy)&#39;, &#39;Trust (Government Corruption)&#39;]]
+happiestclean.set_index(&#39;Year&#39;,inplace=True)
+happiestclean
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[74]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Dystopia Residual</th>
+      <th>Economy (GDP per Capita)</th>
+      <th>Family</th>
+      <th>Freedom</th>
+      <th>Generosity</th>
+      <th>Health (Life Expectancy)</th>
+      <th>Trust (Government Corruption)</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015</th>
+      <td>2.517380</td>
+      <td>1.396510</td>
+      <td>1.349510</td>
+      <td>0.665570</td>
+      <td>0.296780</td>
+      <td>0.941430</td>
+      <td>0.419780</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>2.739390</td>
+      <td>1.441780</td>
+      <td>1.163740</td>
+      <td>0.579410</td>
+      <td>0.361710</td>
+      <td>0.795040</td>
+      <td>0.444530</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>2.277027</td>
+      <td>1.616463</td>
+      <td>1.533524</td>
+      <td>0.635423</td>
+      <td>0.362012</td>
+      <td>0.796667</td>
+      <td>0.315964</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The following plot shows the happiness score for the happiest country in
+2015, 2016, and 2017 and the distribution of the categories that make up
+the score. It shows that the distopia residual makes up the largest
+portion of the score, while generosity and trust make up the smallest
+portions of the score.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [107]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happiestclean.plot.area(xticks = [2015,2016,2017], figsize=(8,8))
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[107]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fcc69515470&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Happiness_Report_18_1.png" src="../_images/notebooks_Happiness_Report_18_1.png" />
+</div>
+</div>
+<p>The following plot shows the average happiness score in each region in
+the year 2017. It shows that Western Europe, North America, and
+Australia and New Zealand have the highest average happiness scores,
+while Sub-Saharan Africa and Sourhtern Asia have the lowest average
+happiness scores.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [186]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>happy2017 = happy.loc[happy[&#39;Year&#39;]==2017]
+happyregion17 = happy2017.groupby(&#39;Region&#39;)[&#39;Happiness Score&#39;].mean()
+happyregion17.plot(kind=&#39;barh&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[186]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fccaaa41ef0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Happiness_Report_20_1.png" src="../_images/notebooks_Happiness_Report_20_1.png" />
+</div>
+</div>
+<p>The following is a scatter plot showing Economy vs Health with size
+relating to the rank and color relating to the score. The larger the
+circle the worse the rank, and the lighter the circle the higher the
+score. This scatter plot shows a very high correlation between economy
+and health.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [135]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>plt.scatter(&#39;Economy (GDP per Capita)&#39;, &#39;Health (Life Expectancy)&#39;, c=&#39;Happiness Score&#39;, s = &#39;Happiness Rank&#39;, data = happy2017)
+plt.xlabel(&#39;Economy&#39;)
+plt.ylabel(&#39;Health&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Happiness_Report_22_0.png" src="../_images/notebooks_Happiness_Report_22_0.png" />
+</div>
+</div>
+<p>The following is a scatter plot showing Family vs Freedom with size
+relating to the rank and color relating to the score. This plot shows
+there is not as high of a correlation between Freedom and Family
+compared to Economy and Health.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [138]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>plt.scatter(&#39;Family&#39;, &#39;Freedom&#39;, c=&#39;Happiness Score&#39;, s = &#39;Happiness Rank&#39;, data = happy2017)
+plt.xlabel(&#39;Family&#39;)
+plt.ylabel(&#39;Freedom&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Happiness_Report_24_0.png" src="../_images/notebooks_Happiness_Report_24_0.png" />
+</div>
+</div>
+<p>The following area plot shows the top 50 happiest countries in 2017 with
+their category distributions. There is a somewhat pattern of what is
+typically the most important in creating the score, but there some
+variations.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [145]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>#50 Happiest countries in 2017 and their distribution of categories
+happy2017a = happy2017[[&#39;Happiness Rank&#39;,&#39;Dystopia Residual&#39;, &#39;Economy (GDP per Capita)&#39;, &quot;Family&quot;,
+                         &#39;Freedom&#39;, &#39;Generosity&#39;, &#39;Health (Life Expectancy)&#39;,
+                        &#39;Trust (Government Corruption)&#39;]]
+happy2017a.set_index(&#39;Happiness Rank&#39;, inplace=True)
+happy2017a = happy2017a.loc[happy2017a.index &lt; 51]
+happy2017a.plot.area(figsize=(12,7))
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[145]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fcc6937e7b8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Happiness_Report_26_1.png" src="../_images/notebooks_Happiness_Report_26_1.png" />
+</div>
+</div>
+<p>The following plot shows the correlation between the different
+categories, total score, and rank. There is a high positive correlation
+between happiness score and almost every category, and there is a high
+negative correlation between happiness rank and almost every category,
+which is to be expected. Some other somewhat high correlations are
+economy and health, family and economy, and family and health.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [182]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import seaborn as sns
+happy2017_trim = happy2017[[&#39;Happiness Rank&#39;,&#39;Dystopia Residual&#39;, &#39;Economy (GDP per Capita)&#39;, &quot;Family&quot;,
+                         &#39;Freedom&#39;, &#39;Generosity&#39;, &#39;Health (Life Expectancy)&#39;,
+                        &#39;Trust (Government Corruption)&#39;, &#39;Happiness Score&#39;]]
+corr = happy2017_trim.corr()
+sns.heatmap(corr, cmap = &#39;Greens&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[182]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fccaaa646d8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Happiness_Report_28_1.png" src="../_images/notebooks_Happiness_Report_28_1.png" />
+</div>
+</div>
+<p>The following map shows the happiness score for countries on a map. I
+used code found on kaggle relating to this data set to assist in
+creating this map. The darker the country, the higher the happiness
+score. The map makes it easier to see that the happiest countries are in
+North America, Europe, and Australia/New Zealand, and the least happy
+countries are found in Africa and Southern Asia.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [183]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import plotly.graph_objs as go
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+init_notebook_mode(connected=True)
+
+scl =  [[0.0, &#39;rgb(242,240,247)&#39;],[0.2, &#39;rgb(218,218,235)&#39;],[0.4, &#39;rgb(188,189,220)&#39;],\
+            [0.6, &#39;rgb(158,154,200)&#39;],[0.8, &#39;rgb(117,107,177)&#39;],[1.0, &#39;rgb(84,39,143)&#39;]]
+data = dict(type = &#39;choropleth&#39;,
+            colorscale = scl,
+        autocolorscale = False,
+           locations = happy2017[&#39;Country&#39;],
+           locationmode = &#39;country names&#39;,
+           z = happy2017[&#39;Happiness Score&#39;],
+           text = happy2017[&#39;Country&#39;],
+           colorbar = {&#39;title&#39;:&#39;Happiness Score&#39;})
+layout = dict(title = &#39;Global Happiness in 2017&#39;,
+             geo = dict(showframe = False,
+                       projection = {&#39;type&#39;: &#39;Mercator&#39;}))
+choromap = go.Figure(data = [data], layout=layout)
+iplot(choromap)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window.Plotly) {{require(['plotly'],function(plotly) {window.Plotly=plotly;});}}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div id="519c561a-cec0-42b9-a4ac-55b6d7a3c438" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("519c561a-cec0-42b9-a4ac-55b6d7a3c438", [{"z": [7.537000179290769, 7.52199983596802, 7.50400018692017, 7.49399995803833, 7.468999862670901, 7.3769998550415, 7.31599998474121, 7.31400012969971, 7.28399991989136, 7.28399991989136, 7.212999820709231, 7.0789999961853, 7.00600004196167, 6.993000030517581, 6.9770002365112305, 6.9510002136230495, 6.89099979400635, 6.86299991607666, 6.71400022506714, 6.65199995040894, 6.6479997634887695, 6.6350002288818395, 6.60900020599365, 6.59899997711182, 6.57800006866455, 6.57200002670288, 6.52699995040894, 6.4539999961853, 6.4539999961853, 6.4520001411438, 6.44199991226196, 6.4239997863769505, 6.42199993133545, 6.40299987792969, 6.375, 6.35699987411499, 6.343999862670901, 6.1680002212524405, 6.10500001907349, 6.09800004959106, 6.08699989318848, 6.08400011062622, 6.07100009918213, 6.00799989700317, 6.002999782562259, 5.97300004959106, 5.97100019454956, 5.96400022506714, 5.962999820709231, 5.955999851226809, 5.92000007629395, 5.90199995040894, 5.872000217437741, 5.849999904632571, 5.837999820709231, 5.837999820709231, 5.824999809265139, 5.82299995422363, 5.82200002670288, 5.8189997673034695, 5.80999994277954, 5.75799989700317, 5.71500015258789, 5.62900018692017, 5.62099981307983, 5.61100006103516, 5.5689997673034695, 5.525000095367429, 5.5, 5.493000030517581, 5.47200012207031, 5.42999982833862, 5.39499998092651, 5.33599996566772, 5.32399988174438, 5.31099987030029, 5.2930002212524405, 5.27899980545044, 5.2729997634887695, 5.26900005340576, 5.26200008392334, 5.25, 5.23699998855591, 5.2350001335144, 5.234000205993651, 5.230000019073491, 5.2270002365112305, 5.22499990463257, 5.19500017166138, 5.18200016021729, 5.1810002326965305, 5.175000190734861, 5.151000022888179, 5.07399988174438, 5.07399988174438, 5.04099988937378, 5.01100015640259, 5.0040001869201705, 4.961999893188481, 4.95499992370605, 4.8289999961853, 4.80499982833862, 4.77500009536743, 4.7350001335144, 4.71400022506714, 4.70900011062622, 4.69500017166138, 4.69199991226196, 4.64400005340576, 4.60799980163574, 4.57399988174438, 4.55299997329712, 4.550000190734861, 4.54500007629395, 4.53499984741211, 4.513999938964839, 4.49700021743774, 4.46500015258789, 4.46000003814697, 4.44000005722046, 4.37599992752075, 4.31500005722046, 4.29199981689453, 4.29099988937378, 4.28599977493286, 4.2800002098083505, 4.19000005722046, 4.17999982833862, 4.1680002212524405, 4.138999938964839, 4.11999988555908, 4.09600019454956, 4.08099985122681, 4.03200006484985, 4.02799987792969, 3.97000002861023, 3.9360001087188703, 3.875, 3.80800008773804, 3.79500007629395, 3.7939999103546103, 3.7660000324249303, 3.65700006484985, 3.64400005340576, 3.6029999256133998, 3.59299993515015, 3.5910000801086404, 3.5329999923706095, 3.50699996948242, 3.4949998855590803, 3.47099995613098, 3.46199989318848, 3.34899997711182, 2.90499997138977, 2.69300007820129], "locations": ["Norway", "Denmark", "Iceland", "Switzerland", "Finland", "Netherlands", "Canada", "New Zealand", "Sweden", "Australia", "Israel", "Costa Rica", "Austria", "United States", "Ireland", "Germany", "Belgium", "Luxembourg", "United Kingdom", "Chile", "United Arab Emirates", "Brazil", "Czech Republic", "Argentina", "Mexico", "Singapore", "Malta", "Uruguay", "Guatemala", "Panama", "France", "Thailand", "Taiwan Province of China", "Spain", "Qatar", "Colombia", "Saudi Arabia", "Trinidad and Tobago", "Kuwait", "Slovakia", "Bahrain", "Malaysia", "Nicaragua", "Ecuador", "El Salvador", "Poland", "Uzbekistan", "Italy", "Russia", "Belize", "Japan", "Lithuania", "Algeria", "Latvia", "South Korea", "Moldova", "Romania", "Bolivia", "Turkmenistan", "Kazakhstan", "North Cyprus", "Slovenia", "Peru", "Mauritius", "Cyprus", "Estonia", "Belarus", "Libya", "Turkey", "Paraguay", "Hong Kong S.A.R., China", "Philippines", "Serbia", "Jordan", "Hungary", "Jamaica", "Croatia", "Kosovo", "China", "Pakistan", "Indonesia", "Venezuela", "Montenegro", "Morocco", "Azerbaijan", "Dominican Republic", "Greece", "Lebanon", "Portugal", "Bosnia and Herzegovina", "Honduras", "Macedonia", "Somalia", "Vietnam", "Nigeria", "Tajikistan", "Bhutan", "Kyrgyzstan", "Nepal", "Mongolia", "South Africa", "Tunisia", "Palestinian Territories", "Egypt", "Bulgaria", "Sierra Leone", "Cameroon", "Iran", "Albania", "Bangladesh", "Namibia", "Kenya", "Mozambique", "Myanmar", "Senegal", "Zambia", "Iraq", "Gabon", "Ethiopia", "Sri Lanka", "Armenia", "India", "Mauritania", "Congo (Brazzaville)", "Georgia", "Congo (Kinshasa)", "Mali", "Ivory Coast", "Cambodia", "Sudan", "Ghana", "Ukraine", "Uganda", "Burkina Faso", "Niger", "Malawi", "Chad", "Zimbabwe", "Lesotho", "Angola", "Afghanistan", "Botswana", "Benin", "Madagascar", "Haiti", "Yemen", "South Sudan", "Liberia", "Guinea", "Togo", "Rwanda", "Syria", "Tanzania", "Burundi", "Central African Republic"], "colorbar": {"title": "Happiness Score"}, "autocolorscale": false, "type": "choropleth", "colorscale": [[0.0, "rgb(242,240,247)"], [0.2, "rgb(218,218,235)"], [0.4, "rgb(188,189,220)"], [0.6, "rgb(158,154,200)"], [0.8, "rgb(117,107,177)"], [1.0, "rgb(84,39,143)"]], "text": ["Norway", "Denmark", "Iceland", "Switzerland", "Finland", "Netherlands", "Canada", "New Zealand", "Sweden", "Australia", "Israel", "Costa Rica", "Austria", "United States", "Ireland", "Germany", "Belgium", "Luxembourg", "United Kingdom", "Chile", "United Arab Emirates", "Brazil", "Czech Republic", "Argentina", "Mexico", "Singapore", "Malta", "Uruguay", "Guatemala", "Panama", "France", "Thailand", "Taiwan Province of China", "Spain", "Qatar", "Colombia", "Saudi Arabia", "Trinidad and Tobago", "Kuwait", "Slovakia", "Bahrain", "Malaysia", "Nicaragua", "Ecuador", "El Salvador", "Poland", "Uzbekistan", "Italy", "Russia", "Belize", "Japan", "Lithuania", "Algeria", "Latvia", "South Korea", "Moldova", "Romania", "Bolivia", "Turkmenistan", "Kazakhstan", "North Cyprus", "Slovenia", "Peru", "Mauritius", "Cyprus", "Estonia", "Belarus", "Libya", "Turkey", "Paraguay", "Hong Kong S.A.R., China", "Philippines", "Serbia", "Jordan", "Hungary", "Jamaica", "Croatia", "Kosovo", "China", "Pakistan", "Indonesia", "Venezuela", "Montenegro", "Morocco", "Azerbaijan", "Dominican Republic", "Greece", "Lebanon", "Portugal", "Bosnia and Herzegovina", "Honduras", "Macedonia", "Somalia", "Vietnam", "Nigeria", "Tajikistan", "Bhutan", "Kyrgyzstan", "Nepal", "Mongolia", "South Africa", "Tunisia", "Palestinian Territories", "Egypt", "Bulgaria", "Sierra Leone", "Cameroon", "Iran", "Albania", "Bangladesh", "Namibia", "Kenya", "Mozambique", "Myanmar", "Senegal", "Zambia", "Iraq", "Gabon", "Ethiopia", "Sri Lanka", "Armenia", "India", "Mauritania", "Congo (Brazzaville)", "Georgia", "Congo (Kinshasa)", "Mali", "Ivory Coast", "Cambodia", "Sudan", "Ghana", "Ukraine", "Uganda", "Burkina Faso", "Niger", "Malawi", "Chad", "Zimbabwe", "Lesotho", "Angola", "Afghanistan", "Botswana", "Benin", "Madagascar", "Haiti", "Yemen", "South Sudan", "Liberia", "Guinea", "Togo", "Rwanda", "Syria", "Tanzania", "Burundi", "Central African Republic"], "locationmode": "country names"}], {"geo": {"projection": {"type": "Mercator"}, "showframe": false}, "title": "Global Happiness in 2017"}, {"showLink": true, "linkText": "Export to plot.ly"})});</script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table of Contents</h3>
+          
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+            </form>
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="../_sources/notebooks/Happiness Report.ipynb.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Sydney Maule and Sam Woollums.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
