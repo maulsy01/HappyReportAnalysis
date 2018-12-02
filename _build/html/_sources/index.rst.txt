@@ -10,12 +10,6 @@ Happiness Report Analysis
    :maxdepth: 2
    :caption: Contents:
 
-Notebooks
-------------
-`This notebook <notebooks/Happiness\ Report.ipynb>`_
-
-`This notebook <notebooks/finalproject.ipynb>`_
-
 What does the world happiness look like?
 -----------------------------------------
 The main focus of our data analysis is answering "what does the world happines look like?". Is it increasing, decreasing or remaining the same? What regions of the world are happier? Which country is the happiest? What catgories are highest for the happiest countries and/or regions? In general, we want to find the trends of happiness and those specific categories for each country and region over the past three years. Also, with this knowledge in mind, it may help us describe our future or explain how events in the world may affect happiness score. 
@@ -50,6 +44,11 @@ Now that all of the datasets had the same organization, we concatinated them int
    happy = pd.concat(frames)
    happy = happy.set_index(['Country'])
    happy = happy.reset_index()
+
+Notebooks
+------------
+`This notebook <notebooks/Happiness\ Report.ipynb>`_  and `This notebook <notebooks/finalproject.ipynb>`_
+contain the code for cleaning the datasets as well as the code for the following visualizations.
 
 General Information
 -------------------
