@@ -12,7 +12,7 @@ Happiness Report Analysis
 
 What does the world happiness look like?
 -----------------------------------------
-The main focus of our data analysis is answering "what does the world happines look like?". Is it increasing, decreasing or remaining the same? What regions of the world are happier? Which country is the happiest? What catgories are highest for the happiest countries and/or regions? In general, we want to find the trends of happiness and those specific categories for each country and region over the past three years. Also, with this knowledge in mind, it may help us describe our future or explain how events in the world may affect happiness score. 
+The main focus of our data analysis is answering "what does the world happiness look like?". Is it increasing, decreasing, or remaining the same? What regions of the world are happier? Which country is the happiest? What categories are highest for the happiest countries and/or regions? In general, we want to find the trends of happiness and those specific categories for each country and region over the past three years. Also, with this knowledge in mind, it may help us describe our future or explain how events in the world may affect happiness score. 
 
 Data Acquisition
 -----------------
@@ -47,7 +47,7 @@ Now that all of the datasets had the same organization, we concatinated them int
 
 Notebooks
 ------------
-`This notebook <notebooks/Happiness\ Report.ipynb>`_  and `This notebook <notebooks/finalproject.ipynb>`_
+`This notebook <notebooks/Happiness\ Report.ipynb>`_  and `this notebook <notebooks/finalproject.ipynb>`_
 contain the code for cleaning the datasets as well as the code for the following visualizations.
 
 General Information
@@ -76,6 +76,8 @@ The following bar plot shows the number of country appearances in the top 5 happ
     :width: 100%
 
 |
+
+We then wondered how the happiness of the different regions compare.
 
 The following plot shows the average happiness score in each region in the year 2017. It shows that Western Europe, North America, and Australia and New Zealand have the highest average happiness scores, while Sub-Saharan Africa and Sourhtern Asia have the lowest average happiness scores.
 
@@ -174,7 +176,7 @@ The following bar plot is seperated by each year, and for each year, there is a 
 
 |
 
-The following line plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.
+The following area plot shows the happiness score for the happiest country in 2015, 2016, and 2017 and the distribution of the categories that make up the score. It shows that the distopia residual makes up the largest portion of the score, while generosity and trust make up the smallest portions of the score.
 
 |
 
@@ -215,7 +217,7 @@ The following is a scatter plot showing Economy vs Health with size relating to 
 
 |
 
-The following is a scatter plot showing Family vs Freedom with size relating to the rank and color relating to the score. This plot shows there is not as high of a correlation between Freedom and Family compared to Economy and Health.
+The following is a scatter plot showing Family vs Freedom with size relating to the rank and color relating to the score in the same way as the previous plot. This plot shows there is not as high of a correlation between Freedom and Family compared to Economy and Health.
 
 |
 
@@ -244,6 +246,8 @@ The following plot shows the correlation between the different categories, total
 
 Overall
 ---------
+Finally, we wanted to be able to generalize our findings.
+
 The following map shows the happiness score for countries on a map. I used code found on kaggle relating to this data set to assist in creating this map. The darker the country, the higher the happiness score. The map makes it easier to see that the happiest countries are in North America, Europe, and Australia/New Zealand, and the least happy countries are found in Africa and Southern Asia.
 
 In order to interact with this graph, go to our jupiter notebooks linked above.
@@ -253,4 +257,9 @@ In order to interact with this graph, go to our jupiter notebooks linked above.
 .. figure:: images/map.png
    :width: 100%
 
+Conclusion
+-----------
 
+We have succeeded in answering our questions of which countries and regions have the highest and lowest happiness scores. We were able to see which areas of happiness contribute the most to rating a country's happiness.
+
+One question we still have after our analysis is whether or not these scores accurately depict the happiness found within these countries and regions.
