@@ -77,6 +77,16 @@ Today during class, Sam and I planned out the order of our narrative and visuali
 
 I worked on organizing the website into the categories of our analysis. I then included the plots I had created in each category of our analysis. I also included descriptions and what we learned from each plot. The one plot I had an issue with importing is the world map displaying happiness score. I am unsure how to save the map in a way it can be interactive on the website.
 
-#### November 29th, 2018
+#### November 29, 2018
 
 I added more information on what data we obtained and what information is contained in the datasets to the website. I also worked on adding more graphs and explinations of the graphs onto the website. We had some issues linking our Jupyter Notebooks to the website.
+
+#### December 2, 2018
+
+Today we worked on linking our Jupyter Notebooks to our website. After struggling to link the notebooks using Sam's computer, we tried using my computer. We realized he was unable to push the notebooks to the website because he did not have anaconda downloaded onto his computer. Since I had anaconda on my computer, we were successfully able to link the notebooks to the website. 
+
+We also changed the size of each figure on the website using :width: 100% so that each figure would be the same size. We also added line breaks in between our writing and our plots so that it is easier to read. 
+
+#### December 3, 2018
+
+I edited our explanations of our plots, and I also added a conclusion including what we found and questions we still have about the data. 
