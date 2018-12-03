@@ -55,3 +55,15 @@ I worked on creating the multi bar graphs that shows the mean of each category f
 
 ### 11/27/2018
 During class, Sydney and I planned out the order of our narrative and visualizations. After some work and some fails, we finally got the theme and website format all planned out. We created an image folder on github to put all of our visualizations so we can easily link to them for our website. We now have to start to add our information into the website! This is where our day ended.
+
+### 11/28/2018
+I helped organizing the website into the categories of our analysis. I added all of my plots onto the website. Then, I added explanations for each plot of what is what and what it shows. Also, I linked out data sets on the website and exlained the purpose of our assignment. 
+
+### 11/29/2018
+We had some issues linking our Jupyter Notebooks to the website, which I spent the majority of the time in class we had on. I ended up never getting it as a pandoc error was popping up consistently. 
+
+### 11/2/2018
+Today we worked on linking our Jupyter Notebooks to our website. After struggling to link the notebooks on my computer, I realized the issue was due to not having anaconda in my home directory. We used Sydney's computer as she had anaconda installed and finally got the botbooks linked. Then, we just worked on formatting the website, and adding a couple more items to it. These changed included making all the figures/graphs width of 100%. Also, we put more spacing inbetween the graphs.
+
+### 11/3/2018
+I added the rest of my notebooks, looked over our website once more, and met up with Sydney to talk about presenting our findings.
