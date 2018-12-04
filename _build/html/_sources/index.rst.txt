@@ -262,4 +262,6 @@ Conclusion
 
 We have succeeded in answering our questions of which countries and regions have the highest and lowest happiness scores. We were able to see which areas of happiness contribute the most to rating a country's happiness.
 
-One question we still have after our analysis is whether or not these scores accurately depict the happiness found within these countries and regions.
+One question we still have after our analysis is whether or not these scores accurately depict the happiness found within these countries and regions. Sadly, we wish we could find out potential causes or correlations from the Happiness score changes. However, it would be interesting to see if different types of past events affect each country. From this, it may be beneficial to predict changes in happiness score from current events.
+
+Overall, the data analysis gave us interesting results that not only answered our questions, but presented us with questions we did not expect.
